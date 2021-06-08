@@ -9,9 +9,6 @@
 <title>My Homepage</title>
 </head>
 <body>
-	<h1>반갑습니다</h1>
-	<p><a href="${rootPath}/comp/insert">출판사 추가</a></p>
-	<p><a href="${rootPath}/author/insert">저자 추가</a></p>
-	<p><a href="${rootPath}/books/insert">도서 추가</a></p>
+	<h1>저자정보 등록</h1>
 </body>
 </html>
