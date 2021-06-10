@@ -4,14 +4,49 @@
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>My Homepage</title>
-</head>
+	<%@ include file="/WEB-INF/views/include/include_head.jspf" %>
 <body>
-	<h1>반갑습니다</h1>
-	<p><a href="${rootPath}/comp/insert">출판사 추가</a></p>
-	<p><a href="${rootPath}/author/insert">저자 추가</a></p>
-	<p><a href="${rootPath}/books/insert">도서 추가</a></p>
+	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
+
+	<section id="main_sec">
+		<article>
+			<h3>출판사</h3>
+			<ul>
+				<li>출판사정보</li>
+				<li>출판사정보</li>
+				<li>출판사정보</li>
+				<li>출판사정보</li>
+				<li>출판사정보</li>
+			</ul>
+		</article>
+		<article>
+			<h3>도서정보</h3>
+			<ul>
+				<li>도서정보</li>
+				<li>도서정보</li>
+				<li>도서정보</li>
+				<li>도서정보</li>
+				<li>도서정보</li>
+			</ul>
+		</article>
+		<article>
+			<h3>저자정보</h3>
+			<ul>
+				<li>저자정보</li>
+				<li>저자정보</li>
+				<li>저자정보</li>
+				<li>저자정보</li>
+				<li>저자정보</li>
+			</ul>
+		</article>
+	</section>
+	<section id="ad_sec">
+		<article></article>
+		<article></article>
+		<article></article>
+		<article></article>
+		<article></article>
+	</section>
+	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>
 </html>
