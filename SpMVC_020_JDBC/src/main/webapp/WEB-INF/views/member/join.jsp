@@ -7,22 +7,22 @@
 	<%@ include file="/WEB-INF/views/include/include_head.jspf" %>
 	<style>
 	
-		form#login_form {
+		form#join_form {
 			width: 350px;
 			padding: 40px;
 			margin: 50px auto;
 			
-			background-color: #191919;
+			background-color: green;
 			text-align: center;
 			border-radius: 20px;
 		}
 		
-		form#login_form h2 {
+		form#join_form h2 {
 			color:white;
 			font-weight: 500;
 		}
 		
-		form#login_form input {
+		form#join_form input {
 		
 			outline: 0;
 			display: block;
@@ -42,16 +42,16 @@
 			transition: 0.3s;
 		}
 		
-		form#login_form input:focus {
+		form#join_form input:focus {
 		width: 250px;
 		border-color: #2eccc71;
 	}
 	
-		form#login_form button:hover {
+		form#join_form button:hover {
 		background-color: green;
 	}
 		
-		form#login_form button {
+		form#join_form button {
 			outline: none;
 			background: none;
 			display: block;
@@ -71,11 +71,12 @@
 	</style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-		<form id="login_form" method="POST">
-			<h2>로그인</h2>
+		<form id="join_form" method="POST">
+			<h2>회원가입</h2>
 			<input name="m_username" placeholder="사용자 ID"/>
 			<input type="password" name="m_password" placeholder="비밀번호"/>
-			<button>로그인</button>
+			<input type="password" name="m_re_password" placeholder="비밀번호 확인"/>
+			<button>가입신청</button>
 		</form>
 	
 

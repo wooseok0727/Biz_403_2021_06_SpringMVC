@@ -1,44 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>My Homepage</title>
-</head>
+<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
 <body>
-	<h1>출판사 정보 등록</h1>
+	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
+
 	<form method="POST">
-	<div><label>출판사명</label><input name="cp_title"></div>
-	<div><label>대표자명</label><input name="cp_ceo"></div>
-	<div><label>전화번호</label><input name="cp_tel"></div>
-	<div><label>주소</label><input name="cp_addr"></div>
-	<div><button>저장</button></div>
+		<fieldset>
+			<legend>출판사 정보</legend>
+			<div>
+				<label>출판사명</label><input name="cp_title" id="cp_title"
+					placeholder="">
+			</div>
+			<div>
+				<label>대표자명</label><input name="cp_ceo" id="cp_ceo" placeholder="">
+			</div>
+			<div>
+				<label>전화번호</label><input name="cp_tel" id="cp_tel" placeholder="">
+			</div>
+			<div>
+				<label>주소</label><input name="cp_addr" id="cp_addr" placeholder="">
+			</div>
+			<div>
+				<label>주요장르</label><input name="cp_genre" id="cp_genre"
+					placeholder="">
+			</div>
+		</fieldset>
 	</form>
 	<div>
-		<label>삭제할 코드</label>
-		<input name="cpcode" id="cpcode">
-		<button class="btn_delete">삭제</button>
+		<div class="btn_box">
+			<button type="button" class="btn_save comp">저장</button>
+			<button type="reset" class="btn_reset comp">다시작성</button>
+			<button type="button" class="btn_list comp">리스트로</button>
+		</div>
 	</div>
-	<script>
-		// const : 상수를 선언하는 키워드
-		// 		코드가 진행되는 동안 값이 변경되면 안되는 것
-		const doc = document;
-		
-		doc.querySelector("button.btn_delete").addEventListener("click",(e)=> {
-			doc.querySelector("input[name='cpcode']")
-			
-			const cpcodeObj = doc.querySelector("input#cpcode")
-			
-			let cpcode = cpcodeObj.value
-			
-			// alert("삭제버튼 클릭" + cpcode)
-			if(confirm(cpcode + " 를 삭제합니다!!")) {
-				location.replace("${rootPath}/comp/delete?cpcode=" + cpcode);
-			}
-		})
-	</script>
+	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 </body>
+<script>
+document.querySelector("button.btn_save.comp")
+	.addEventListener("click",()=>{
+		location.href="${rootPath}/comp/insert"
+	})
+</script>
 </html>
