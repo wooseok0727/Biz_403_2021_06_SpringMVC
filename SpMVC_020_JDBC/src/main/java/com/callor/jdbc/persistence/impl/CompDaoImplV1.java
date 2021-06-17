@@ -53,7 +53,7 @@ public class CompDaoImplV1 implements CompDao {
 		String sql = " SELECT * FROM tbl_company ";
 		sql += " WHERE cp_code = ? ";
 		Object[] params = new Object[] {pk};
-		CompanyVO vo = (CompanyVO) jdbcTemplate.query(sql,params,new BeanPropertyRowMapper<CompanyVO>(CompanyVO.class));
+		CompanyVO vo = jdbcTemplate.queryForObject(sql,params,BeanPropertyRowMapper.newInstance(CompanyVO.class));
 		log.debug("Comp PK SELECT {}",vo.toString() );
 		return null;
 	}
