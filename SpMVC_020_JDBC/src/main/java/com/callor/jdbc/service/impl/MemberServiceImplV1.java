@@ -3,11 +3,21 @@ package com.callor.jdbc.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.callor.jdbc.model.UserVO;
+import com.callor.jdbc.persistence.UserDao;
 import com.callor.jdbc.service.MemberService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MemberServiceImplV1 implements MemberService{
-
+	
+	protected final UserDao userDao;
+	
+	public MemberServiceImplV1(UserDao userDao) {
+		this.userDao = userDao;
+	}
+	
 	@Override
 	public UserVO login(String username, String password) {
 		// TODO 로그인
@@ -34,6 +44,7 @@ public class MemberServiceImplV1 implements MemberService{
 	@Override
 	public UserVO viewInfo(String username) {
 		// TODO Auto-generated method stub
+		// userDao.findById(username);
 		return null;
 	}
 

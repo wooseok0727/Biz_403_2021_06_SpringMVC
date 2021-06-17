@@ -27,6 +27,9 @@ public class MemberController {
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login(@RequestParam(name = "MSG",required = false) String msg, Model model) {
 		
+		// String username = "aaaa";
+		// memberService.viewInfo(username);
+		
 		if(msg == null) {
 			model.addAttribute("MSG","NONE");
 		} else if(msg.equals("LOGIN")) {
