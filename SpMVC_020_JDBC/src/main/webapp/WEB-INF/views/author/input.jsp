@@ -10,37 +10,36 @@
 	</style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-	
-	<form method="POST">
-		<fieldset>
-		<legend>저자정보</legend>
-		<div>
-			<label>CODE</label>
-			<input name="au_code" id="au_code" placeholder="">
-		</div>
-		<div>
-			<label>저자명</label>
-			<input name="au_name" id="au_name" placeholder="">
-		</div>
-		<div>
-			<label>전화번호</label>
-			<input name="au_tel" id="au_tel" placeholder="">
-		</div>
-		<div>
-			<label>주요장르</label>
-			<input name="au_genre" id="au_genre" placeholder="">
-		</div>
+	<section class="main_sec">
+		<form method="POST">
+			<fieldset>
+				<legend>저자정보</legend>
+				<div>
+					<label>CODE</label> <input name="au_code" id="au_code"
+						placeholder="">
+				</div>
+				<div>
+					<label>저자명</label> <input name="au_name" id="au_name"
+						placeholder="">
+				</div>
+				<div>
+					<label>전화번호</label> <input name="au_tel" id="au_tel" placeholder="">
+				</div>
+				<div>
+					<label>주요장르</label> <input name="au_genre" id="au_genre"
+						placeholder="">
+				</div>
 
-		</fieldset>
-		<div class="btn_box">
-			<button type="button" class="btn_save author">저자등록</button>
-			<button type="reset" class="btn_reset author">새로작성</button>
-			<button type="button" class="btn_list author">리스트로</button>
-		</div>
-	</form>
-	
+			</fieldset>
+			<div class="btn_box">
+				<button type="button" class="btn_save author">저자등록</button>
+				<button type="reset" class="btn_reset author">새로작성</button>
+				<button type="button" class="btn_list author">리스트로</button>
+			</div>
+		</form>
+	</section>
 
-	
+
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 </body>
 <script>

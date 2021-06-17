@@ -1,66 +1,77 @@
 @charset "UTF-8";
 
-	section#main_sec {
-		width: 100%;
-		margin: 5px auto;
-		border: 1px solid #999;
-		
-		display: flex;
-		
-	}
-	section#main_sec article {
-		flex: 1;
-		border: 1px solid green;
-		margin: 6px 3px;
-		padding: 5px;
-	}
+section#main_sec {
+	flex:auto;
+	width: 100%;
+	margin: 5px auto;
+	border: 1px solid #999;
 	
-	section#main_sec article ul {
-		margin: 0;
-		padding: 0;
-	}
+	display: flex;
 	
-	section#main_sec article li {
-		margin: 0 20px;
-		padding:0 5px;
-	}
+}
+section#main_sec article {
+	flex: 1;
+	border: 1px solid green;
+	margin: 6px 3px;
+	padding: 5px;
+}
+
+section#main_sec article ul {
+	margin: 0;
+	padding: 0;
+}
+
+section#main_sec article li {
+	margin: 0 20px;
+	padding:0 5px;
+}
+
+section#ad_sec {
+	width: 100%;
+	border: 1px solid #999;
+	display: flex;
+}
+
+section#ad_sec article {
+	flex: 1;
+	margin: 5px 3px;
+	height: 150px;
 	
-	section#ad_sec {
-		width: 100%;
-		border: 1px solid #999;
-		display: flex;
-	}
+	/* 
+		article box에 지정된 background를
+		box에 가득차도록하고, 이미지는 box 크기만큼 가로세로를
+		조절하여 채워라
+		현재 article에 background를 채우면서
+		nth-of-type(*) 가상 클래스를 사용하였더니
+		background-size가 작동되지 않더라
+		해결방법 : include_header.jspf 참조
+	 */  
+	background-size: 100% 100%; /* cover */
+	border-radius: 5px;
+}
+
+/*
+	어떤 요소의 순서대로 속성을 지정하고자 할때
+	nth-child(순서), nth-of-type(순서)
+	다음과 같이 tag가 구성되어 있을 때
 	
-	section#ad_sec article {
-		flex: 1;
-		margin: 5px 3px;
-		height: 100px;
-		background-size: 100% 100%; /* cover */
-		border-radius: 5px;
-	}
+	<div>
+		<p>1
+		<p>2
+		<div>3
+		<p>4
+	<div>
 	
-	/*
-		어떤 요소의 순서대로 속성을 지정하고자 할때
-		nth-child(순서), nth-of-type(순서)
-		다음과 같이 tag가 구성되어 있을 때
-		
-		<div>
-			<p>1
-			<p>2
-			<div>3
-			<p>4
-		<div>
-		
-		nth-child는 무조건 포함된 tag에 모두 일련번호를 부여한다
-		div p:nth-child(4) : <p>4 tag에 대하여
-		
-		nth-of-type은 포함된 tag중에 지정한 tag만 일련번호를 부여한다
-		div p:nth-of-type(3) <p>4 tag에 대하여
-	*/	
+	nth-child는 무조건 포함된 tag에 모두 일련번호를 부여한다
+	div p:nth-child(4) : <p>4 tag에 대하여
 	
-	/*
-		home.jsp 의
-		중간 부분 이미지를 표현하는 부분의 CSS는
-		rootPath 문제로 여기에 둘수 없어서
-		include_header.jspf 파일로 옮겼다
-	*/
+	nth-of-type은 포함된 tag중에 지정한 tag만 일련번호를 부여한다
+	div p:nth-of-type(3) <p>4 tag에 대하여
+*/	
+
+/*
+	home.jsp 의
+	중간 부분 이미지를 표현하는 부분의 CSS는
+	rootPath 문제로 여기에 둘수 없어서
+	include_header.jspf 파일로 옮겼다
+*/
