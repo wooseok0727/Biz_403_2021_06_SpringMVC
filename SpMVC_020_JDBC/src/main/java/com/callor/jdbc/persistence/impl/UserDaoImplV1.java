@@ -36,6 +36,8 @@ public class UserDaoImplV1 implements UserDao {
 		String sql = " SELECT * FROM tbl_member ";
 		sql += " WHERE username = ? ";
 		Object[] params = new Object[] {username};
+		// query() : Multi row 쿼리문 수행결과가 한개 이상 - List로 반환
+		// queryForObject() : Single row 쿼리문 수행결과가 한개 - 객체 그대로 반환
 		UserVO userVO = jdbcTemplate.queryForObject(sql, params,new BeanPropertyRowMapper<UserVO>(UserVO.class));
  
 		log.debug("userVO {}",userVO);
