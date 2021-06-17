@@ -36,7 +36,7 @@ public class UserDaoImplV1 implements UserDao {
 		String sql = " SELECT * FROM tbl_member ";
 		sql += " WHERE username = ? ";
 		Object[] params = new Object[] {username};
-		UserVO userVO = jdbcTemplate.queryForObject(sql, params,BeanPropertyRowMapper.newInstance(UserVO.class));
+		UserVO userVO = jdbcTemplate.queryForObject(sql, params,new BeanPropertyRowMapper<UserVO>(UserVO.class));
  
 		log.debug("userVO {}",userVO);
 		return null;
