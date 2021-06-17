@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import com.callor.jdbc.model.UserVO;
 import com.callor.jdbc.persistence.UserDao;
@@ -35,10 +36,12 @@ public class UserDaoImplV1 implements UserDao {
 		
 		String sql = " SELECT * FROM tbl_member ";
 		sql += " WHERE username = ? ";
-		Object[] params = new Object[] {username};
+		RowMapper<UserVO> IdMapper = new BeanPropertyRowMapper<>(UserVO.class);
 		// query() : Multi row 쿼리문 수행결과가 한개 이상 - List로 반환
 		// queryForObject() : Single row 쿼리문 수행결과가 한개 - 객체 그대로 반환
-		UserVO userVO = jdbcTemplate.queryForObject(sql, params,new BeanPropertyRowMapper<UserVO>(UserVO.class));
+		// 배열을 사용하지 않을때는 매개변수 순서가 파라메터가 제일 뒤
+		// 배열을 사용할때는 (sql,params,RowMapper)
+		UserVO userVO = jdbcTemplate.queryForObject(sql,IdMapper,username);
  
 		log.debug("userVO {}",userVO);
 		return null;

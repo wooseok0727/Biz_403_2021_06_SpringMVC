@@ -44,7 +44,7 @@ public class MemberServiceImplV1 implements MemberService{
 	@Override
 	public UserVO viewInfo(String username) {
 		// TODO Auto-generated method stub
-		userDao.findById(username);
+		// userDao.findById(username);
 		return null;
 	}
 
