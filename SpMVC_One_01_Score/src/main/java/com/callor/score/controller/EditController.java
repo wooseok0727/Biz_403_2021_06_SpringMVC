@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.callor.score.model.ScoreVO;
 import com.callor.score.model.StudentVO;
@@ -49,11 +50,23 @@ public class EditController {
 	}
 	
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String delete(Model model, String st_num) {
+	@RequestMapping(value="/stdelete", method=RequestMethod.GET)
+	public String stDelete(Model model, String st_num) {
 		log.debug("st_num",st_num);
 		studentService.delete(st_num);
 
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/scdelete", method=RequestMethod.GET)
+	public String scDelete(Model model, String sc_num, String st_num) {
+		log.debug("선택 {}",sc_num);
+		// scoreService.delete(sc_num);
+		StudentVO stVO = studentService.findById(st_num);
+		List<ScoreVO> scList = scoreService.findByStNum(st_num);
+		
+		model.addAttribute("ST",stVO);
+		model.addAttribute("SC",scList);
 		return "redirect:/";
 	}
 }

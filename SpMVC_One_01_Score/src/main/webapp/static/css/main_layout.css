@@ -74,6 +74,10 @@
   font-weight: bold;
 }
 
+.list .container tr:nth-child(n + 2):hover .sc_delete {
+	display: block;
+}	
+
 .eContainer {
   width: 80%;
   height: 100%;
@@ -118,7 +122,7 @@
   
 }
 
-#btn_box button:nth-of-type(3) {
+#btn_box button:nth-of-type(2) {
   margin-left: auto;
 }
 
@@ -148,7 +152,7 @@
   
 }
 
-#btn_box2 button:nth-of-type(3) {
+#btn_box2 button:nth-of-type(2) {
   margin-left: auto;
 }
 
@@ -210,4 +214,19 @@ button.std_btn {
   font-weight: bold;
 }
 
+.delete {
+  position: relative;
+}
+
+.delete .sc_delete {
+  padding: 5px 5px;
+  position: absolute;
+  top:50%;
+  right: 2%;
+  transform: translateY(-50%);
+  background-color: #fb667a;
+  color: black;
+  display: none;
+  font-family: 'Poor Story', cursive;
+}
 

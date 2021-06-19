@@ -48,7 +48,6 @@
 				<div class="btn_container">
 					<div id="btn_box2">
 						<button class="score_btn">성적추가</button>
-						<button class="score_btn">성적삭제</button>
 						<button class="std_btn std_complete">수정완료</button>
 						<button class="std_btn std_back">뒤로가기</button>
 					</div>
@@ -75,7 +74,7 @@
 						</tr>
 					</table>
 				</div>
-				<div class="score">
+				<div class="score list">
 					<table class="container">
 						<tr>
 							<th>NO.</th>
@@ -86,7 +85,7 @@
 							<tr data-seq="${SC.sc_seq}">
 								<td>${i.count}</td>
 								<td>${SC.sc_subject}</td>
-								<td>${SC.sc_score}</td>
+								<td class="delete">${SC.sc_score}<button type="button" class="score_btn sc_delete">삭제</button></td>
 							</tr>
 						</c:forEach>
 						<tr>
@@ -97,13 +96,13 @@
 							</c:forEach>
 							<td>${SC_COUNT}</td>
 							<td>${SC_SUM}</td>
+							
 						</tr>
 					</table>
 				</div>
 				<div class="btn_container">
 					<div id="btn_box">
 						<button type="button" class="score_btn">성적추가</button>
-						<button type="button" class="score_btn">성적삭제</button>
 						<button type="button" class="std_btn std_edit">학생정보수정</button>
 						<button type="button" class="std_btn">학생정보삭제</button>
 					</div>
@@ -120,7 +119,17 @@ let stGrade = document.querySelector("input#st_grade");
 let stTel = document.querySelector("input#st_tel");
 let btn = document.querySelector("#btn_box");
 let btn2 = document.querySelector("#btn_box2");
+let btn_delete = document.querySelector(".sc_delete");
 
+btn_delete.addEventListener("click",(e)=>{
+	let tagName = e.target.tagName;
+	if(tagName == "BUTTON") {
+		let tr = e.target.closest("TR").dataset;
+		if(confirm("정말 삭제할까요?")) {
+			document.location.replace("${rootPath}/editlist/scdelete?sc_num=" + tr.seq + "&st_num=" +${ST.st_num} )
+		}
+	}
+});
 btn.addEventListener("click",(e)=>{
 	let tagName = e.target.tagName;
 	if(tagName === "BUTTON") {
@@ -132,7 +141,7 @@ btn.addEventListener("click",(e)=>{
 				alert("성적정보가 있는 학생은 삭제할 수 없습니다")
 				return false;
 			} else if(confirm("${ST.st_name} 학생을 " + "삭제하시겠습니까?")) {
-				document.location.replace("${rootPath}/editlist/delete?st_num=" + ${ST.st_num})
+				document.location.replace("${rootPath}/editlist/stdelete?st_num=" + ${ST.st_num})
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>대한고교 성적처리 2021</title>
-<link href="${rootPath}/static/css/main_layout.css?ver=2021-06-18-015" rel="stylesheet" />
+<link href="${rootPath}/static/css/main_layout.css?ver=2021-06-18-016" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
 </head>
