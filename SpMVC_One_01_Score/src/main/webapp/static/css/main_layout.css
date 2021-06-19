@@ -93,7 +93,7 @@
 }
 .student1 .container td:last-child {
   
-  color: #a7a1ae;
+  color: #fff842;
   font-weight: bold;
 }
 .btn_container {
@@ -101,10 +101,10 @@
   margin: 0 auto;
 }
 
-.btn_box {
+#btn_box {
   display: flex;
 }
-.btn_box button {
+#btn_box button {
   background: none;
   border: 2px solid;
   line-height: 1;
@@ -114,21 +114,51 @@
   display: inline-block;
   margin: 0 2px;
   font-weight: 500;
+  font-family: 'Poor Story', cursive;
   
 }
 
-.btn_box button:nth-of-type(4) {
+#btn_box button:nth-of-type(3) {
   margin-left: auto;
 }
 
-.btn_box button:hover {
+#btn_box button:hover {
   box-shadow: 0 0.5em 0.5em -0.4em;
   transform: translateY(-0.25em);
   cursor: pointer; 
   opacity: 0.7;
   color: #fff842;
   border-color: #fff842;
+}
+
+#btn_box2 {
+  display: flex;
+}
+#btn_box2 button {
+  background: none;
+  border: 2px solid;
+  line-height: 1;
+  padding: 0.7em 1.5em;
+  transition: 0.25s;
+  outline: none;
+  display: inline-block;
+  margin: 0 2px;
+  font-weight: 500;
+  font-family: 'Poor Story', cursive;
   
+}
+
+#btn_box2 button:nth-of-type(3) {
+  margin-left: auto;
+}
+
+#btn_box2 button:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em;
+  transform: translateY(-0.25em);
+  cursor: pointer; 
+  opacity: 0.7;
+  color: #fff842;
+  border-color: #fff842;
 }
 
 button.score_btn {
@@ -141,23 +171,43 @@ button.std_btn {
   color: #4dc3fa;
 }
 
-.front button.score_btn {
+.front #btn_box2 button.score_btn {
   display: none;
 }
 
 .front input {
   width: 80%;
-  color: #a3a3a3;
+  color: #fff842;
   padding: 0.5em 1em;
   outline-style: none;
   background-color: transparent;
   border: 3px solid #185875;
   border-radius: 12px;
+  font-family: 'Poor Story', cursive;
 }
 
 .front input:focus {
   box-shadow: 0 0.5em 0.5em -0.4em;
   transform: translateY(-0.1em);
+}
+
+#table1.container tr:nth-child(n + 1):focus-within {
+  background-color: #fff842;
+  box-shadow: #7f7c21 -1px 1px, #7f7c21 -2px 2px, #7f7c21 -3px 3px,
+    #7f7c21 -4px 4px, #7f7c21 -5px 5px, #7f7c21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+#table1.container tr:nth-child(n + 1):focus-within td {
+  color: #403e10;
+  font-weight: bold;
+}
+
+#table1.container tr:nth-child(n + 1):focus-within td input {
+  color: #403e10;
+  font-weight: bold;
 }
 
 

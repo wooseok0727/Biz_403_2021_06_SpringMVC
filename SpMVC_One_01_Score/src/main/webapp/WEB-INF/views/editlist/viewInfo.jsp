@@ -16,23 +16,27 @@
 						<table id="table1" class="container">
 							<tr>
 								<td>학번</td>
-								<td><input name="st_num" value="${ST.st_num}" readonly></td>
+								<td><input id="st_num" name="st_num" value="${ST.st_num}"
+									readonly></td>
 							</tr>
 							<tr>
 								<td>이름</td>
-								<td><input name="st_name" value="${ST.st_name}"></td>
+								<td><input id="st_name" name="st_name"
+									value="${ST.st_name}"></td>
 							</tr>
 							<tr>
 								<td>전공</td>
-								<td><input name="st_dept" value="${ST.st_dept}"></td>
+								<td><input id="st_dept" name="st_dept"
+									value="${ST.st_dept}"></td>
 							</tr>
 							<tr>
 								<td>학년</td>
-								<td><input name="st_grade" value="${ST.st_grade}"></td>
+								<td><input id="st_grade" name="st_grade"
+									value="${ST.st_grade}"></td>
 							</tr>
 							<tr>
 								<td>연락처</td>
-								<td><input name="st_tel" value="${ST.st_tel}"></td>
+								<td><input id="st_tel" name="st_tel" value="${ST.st_tel}"></td>
 							</tr>
 							<tr>
 								<td>주소</td>
@@ -42,9 +46,8 @@
 					</form>
 				</div>
 				<div class="btn_container">
-					<div class="btn_box">
+					<div id="btn_box2">
 						<button class="score_btn">성적추가</button>
-						<button class="score_btn">성적수정</button>
 						<button class="score_btn">성적삭제</button>
 						<button class="std_btn std_complete">수정완료</button>
 						<button class="std_btn std_back">뒤로가기</button>
@@ -54,7 +57,7 @@
 			<div class="eContainer back">
 				<div class="student1">
 					<table id="table1" class="container">
-						<tr>
+						<tr data-num="${ST.st_num}">
 							<td>학번</td>
 							<td>${ST.st_num}</td>
 						</tr>
@@ -98,12 +101,11 @@
 					</table>
 				</div>
 				<div class="btn_container">
-					<div class="btn_box">
-						<button class="score_btn">성적추가</button>
-						<button class="score_btn">성적수정</button>
-						<button class="score_btn">성적삭제</button>
-						<button class="std_btn std_edit">학생정보수정</button>
-						<button class="std_btn">학생정보삭제</button>
+					<div id="btn_box">
+						<button type="button" class="score_btn">성적추가</button>
+						<button type="button" class="score_btn">성적삭제</button>
+						<button type="button" class="std_btn std_edit">학생정보수정</button>
+						<button type="button" class="std_btn">학생정보삭제</button>
 					</div>
 				</div>
 			</div>
@@ -112,44 +114,63 @@
 </body>
 <script>
 let main_con = document.querySelector("#main_con");
-document.querySelector("button.std_edit").addEventListener("click",()=>{
-	main_con.style.transform = "rotateY(-180deg)"
-})
-document.querySelector("button.std_back").addEventListener("click",()=>{
-	main_con.style.transform = "rotateY(0)"
-})
+let stName = document.querySelector("input#st_name");
+let stDept = document.querySelector("input#st_dept");
+let stGrade = document.querySelector("input#st_grade");
+let stTel = document.querySelector("input#st_tel");
+let btn = document.querySelector("#btn_box");
+let btn2 = document.querySelector("#btn_box2");
 
+btn.addEventListener("click",(e)=>{
+	let tagName = e.target.tagName;
+	if(tagName === "BUTTON") {
+		let buttonText = e.target.textContent;
+		if(buttonText === "학생정보수정") {
+			main_con.style.transform = "rotateY(-180deg)"
+		} else if(buttonText === "학생정보삭제") {
+			if(${not empty SC}) {
+				alert("성적정보가 있는 학생은 삭제할 수 없습니다")
+				return false;
+			} else if(confirm("${ST.st_name} 학생을 " + "삭제하시겠습니까?")) {
+				document.location.replace("${rootPath}/editlist/delete?st_num=" + ${ST.st_num})
+			}
+		}
+	}
+});
 
-document.querySelector("button.std_complete").addEventListener("click",()=>{
-	
-	let stName = document.querySelector("input#stName");
-	let stDept = document.querySelector("input#stDept");
-	let stGrade = document.querySelector("input#stGrade");
-	let stTel = document.querySelector("input#stTel");
-	
-	if(stName.value === "") {
-		alert("이름을 입력하세요");
-		stName.focus();
-		return false;
+btn2.addEventListener("click",(e)=>{	
+	let tagName = e.target.tagName;
+	if(tagName === "BUTTON") {
+		let buttonText = e.target.textContent;
+	if(buttonText === "뒤로가기") {
+		main_con.style.transform = "rotateY(0)"
+	} else if(buttonText === "수정완료") {
+		
+		if(st_name.value === "") {
+			alert("이름을 입력하세요");
+			st_name.focus();
+			return false;
+		}
+		if(st_dept.value === "") {
+			alert("전공을 입력하세요");
+			st_dept.focus();
+			return false;
+		}
+		if(st_grade.value === "") {
+			alert("학년을 입력하세요");
+			st_grade.focus();
+			return false;
+		}
+		if(st_tel.value === "") {
+			alert("연락처를 입력하세요");
+			st_tel.focus();
+			return false;
+		}
+		if(confirm("수정할까요")) {
+			document.querySelector("form#st_update").submit();
+		}
+	  }
 	}
-	if(stDept.value === "") {
-		alert("전공을 입력하세요");
-		stDept.focus();
-		return false;
-	}
-	if(stGrade.value === "") {
-		alert("학년을 입력하세요");
-		stGrade.focus();
-		return false;
-	}
-	if(stTel.value === "") {
-		alert("연락처를 입력하세요");
-		stTel.focus();
-		return false;
-	}
-	if(confirm("수정할까요")) {
-		document.querySelector("form#st_update").submit();
-	}
-})	
+	});	
 </script>
 </html>

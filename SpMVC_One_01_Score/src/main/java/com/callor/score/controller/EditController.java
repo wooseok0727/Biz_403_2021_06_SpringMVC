@@ -40,13 +40,13 @@ public class EditController {
 		return "editlist/viewInfo";
 	}
 	
-	@RequestMapping(value="/edit", method=RequestMethod.GET)
-	public String edit(Model model, String st_num) {
-		
-		StudentVO stVO = studentService.findById(st_num);
-		model.addAttribute("ST",stVO);
-		
-		
-		return "editlist/viewInfo";
+	
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(Model model, String st_num) {
+		log.debug("st_num",st_num);
+		studentService.delete(st_num);
+
+		return "redirect:/";
 	}
 }
