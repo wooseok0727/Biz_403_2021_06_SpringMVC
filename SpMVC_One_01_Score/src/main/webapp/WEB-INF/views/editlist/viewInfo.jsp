@@ -1,101 +1,126 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-	<%@ include file="/WEB-INF/views/include/include_head.jspf" %>
+<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
 <body>
-	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-	
-		<section class="view_sec2">
-		<c:if test="${not empty FLAG}">
-		<article>
-		<table>
-			<tr>
-				<th>학번</th>
-				<th>이름</th>
-				<th>전공</th>
-				<th>학년</th>
-			</tr>
-			<tr>
-				<td>${ST.st_num}</td>
-				<td>${ST.st_name}</td>
-				<td>${ST.st_dept}</td>
-				<td>${ST.st_grade}</td>
-			</tr>
-		</table>
-		</article>
-		<article>
-		<table>
-			<tr>
-				<th>No.</th>
-				<th>과목명</th>
-				<th>점수</th>
-			</tr>
-			
-			<c:forEach items="${SC}" var="SC" varStatus="i">
-			<tr data-seq="${SC.sc_seq}">
-				<td>${i.count}</td>
-				<td>${SC.sc_subject}</td>
-				<td>${SC.sc_score}</td>
-			</tr>
-			</c:forEach>	
-			<tr>
-				<td>총점</td>
-				<c:forEach items="${SC}" var="SC1" >
-				<c:set var="SC_COUNT" value="${SC_COUNT + 1}" />
-				<c:set var="SC_SUM" value="${SC_SUM + SC1.sc_score}" />
-				</c:forEach>
-				<td>${SC_COUNT}</td>
-				<td>${SC_SUM}</td>
-			</tr>
-		</table>
-		<div class="btn_box">
-		<button class="sc_update">성적추가</button>
-			<button class="st_update">학생정보 수정</button>
-			<button class="st_delete">학생정보 삭제</button>
+	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
+
+	<section class="main_sec">
+		<div id="main_con">
+			<div class="eContainer front">
+				<div class="student1">
+					<form id="st_update" method="POST">
+						<table id="table1" class="container">
+							<tr>
+								<td>학번</td>
+								<td><input name="st_num" value="${ST.st_num}" readonly></td>
+							</tr>
+							<tr>
+								<td>이름</td>
+								<td><input name="st_name" value="${ST.st_name}"></td>
+							</tr>
+							<tr>
+								<td>전공</td>
+								<td><input name="st_dept" value="${ST.st_dept}"></td>
+							</tr>
+							<tr>
+								<td>학년</td>
+								<td><input name="st_grade" value="${ST.st_grade}"></td>
+							</tr>
+							<tr>
+								<td>연락처</td>
+								<td><input name="st_tel" value="${ST.st_tel}"></td>
+							</tr>
+							<tr>
+								<td>주소</td>
+								<td><input name="st_addr" value="${ST.st_addr}"></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<div class="btn_container">
+					<div class="btn_box">
+						<button class="score_btn">성적추가</button>
+						<button class="score_btn">성적수정</button>
+						<button class="score_btn">성적삭제</button>
+						<button class="std_btn std_complete">수정완료</button>
+						<button class="std_btn std_back">뒤로가기</button>
+					</div>
+				</div>
+			</div>
+			<div class="eContainer back">
+				<div class="student1">
+					<table id="table1" class="container">
+						<tr>
+							<td>학번</td>
+							<td>${ST.st_num}</td>
+						</tr>
+						<tr>
+							<td>이름</td>
+							<td>${ST.st_name}</td>
+						</tr>
+						<tr>
+							<td>전공</td>
+							<td>${ST.st_dept}</td>
+						</tr>
+						<tr>
+							<td>학년</td>
+							<td>${ST.st_grade}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="score">
+					<table class="container">
+						<tr>
+							<th>NO.</th>
+							<th>과목명</th>
+							<th>점수</th>
+						</tr>
+						<c:forEach items="${SC}" var="SC" varStatus="i">
+							<tr data-seq="${SC.sc_seq}">
+								<td>${i.count}</td>
+								<td>${SC.sc_subject}</td>
+								<td>${SC.sc_score}</td>
+							</tr>
+						</c:forEach>
+						<tr>
+							<td>총합</td>
+							<c:forEach items="${SC}" var="SC1">
+								<c:set var="SC_COUNT" value="${SC_COUNT + 1}" />
+								<c:set var="SC_SUM" value="${SC_SUM + SC1.sc_score}" />
+							</c:forEach>
+							<td>${SC_COUNT}</td>
+							<td>${SC_SUM}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn_container">
+					<div class="btn_box">
+						<button class="score_btn">성적추가</button>
+						<button class="score_btn">성적수정</button>
+						<button class="score_btn">성적삭제</button>
+						<button class="std_btn std_edit">학생정보수정</button>
+						<button class="std_btn">학생정보삭제</button>
+					</div>
+				</div>
+			</div>
 		</div>
-		</article>
-		</c:if>
-		<c:if test="${empty FLAG}">
-		<article>
-		<form id="st_update" method="POST">
-		<table>
-			<tr>
-				<th>학번</th>
-				<th>이름</th>
-				<th>전공</th>
-				<th>학년</th>
-				<th>연락처</th>
-				<th>주소</th>
-			</tr>
-			<tr class="input">
-				<td>${ST.st_num}</td>
-				<td><input id="stName" value="${ST.st_name}" /></td>
-				<td><input id="stDept" value="${ST.st_dept}" /></td>
-				<td><input id="stGrade" value="${ST.st_grade}" /></td>
-				<td><input id="stTel" value="${ST.st_tel}" /></td>
-				<td><input value="${ST.st_addr}" /></td>
-			</tr>
-		</table>
-		<div class="btn_box">
-			<button class="st_update1" type="button">수정하기</button>
-		</div>
-		</form>
-		</article>
-		</c:if>
 	</section>
 </body>
 <script>
+let main_con = document.querySelector("#main_con");
+document.querySelector("button.std_edit").addEventListener("click",()=>{
+	main_con.style.transform = "rotateY(-180deg)"
+})
+document.querySelector("button.std_back").addEventListener("click",()=>{
+	main_con.style.transform = "rotateY(0)"
+})
 
-let st_update = document.querySelector("button.st_update");
-if(st_update) {
-	st_update.addEventListener("click",()=>{
-		location.href="${rootPath}/editlist/edit?st_num=" + ${ST.st_num};
-	})
-};
-document.querySelector("button.st_update1").addEventListener("click",()=>{
+
+document.querySelector("button.std_complete").addEventListener("click",()=>{
 	
 	let stName = document.querySelector("input#stName");
 	let stDept = document.querySelector("input#stDept");

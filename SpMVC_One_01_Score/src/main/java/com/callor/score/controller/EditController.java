@@ -36,9 +36,7 @@ public class EditController {
 		log.debug("scVO {}",scList);
 		model.addAttribute("ST",stVO);
 		model.addAttribute("SC",scList);
-		model.addAttribute("FLAG",1);
-		
-		
+			
 		return "editlist/viewInfo";
 	}
 	

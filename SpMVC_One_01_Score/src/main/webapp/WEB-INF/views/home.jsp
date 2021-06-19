@@ -7,8 +7,8 @@
 	<%@ include file="/WEB-INF/views/include/include_head.jspf" %>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
-    <section class="main_sec">
-      <table class="td_list">
+    <section class="main_sec list">
+      <table class="container">
         <tr>
           <th>학번</th>
           <th>이름</th>
@@ -35,7 +35,7 @@
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
 	
-	document.querySelector("table.td_list").addEventListener("click",(e)=>{
+	document.querySelector("table.container").addEventListener("click",(e)=>{
 		
 		let tagName = e.target.tagName;
 		if(tagName == "TD") {
