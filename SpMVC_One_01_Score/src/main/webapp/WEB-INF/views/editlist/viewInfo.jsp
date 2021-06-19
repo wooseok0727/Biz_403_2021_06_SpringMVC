@@ -82,11 +82,15 @@
 							<th>점수</th>
 						</tr>
 						<c:forEach items="${SC}" var="SC" varStatus="i">
-							<tr data-seq="${SC.sc_seq}">
+						<form action="editlist/scdelete" id="scdelete${i.count}" method="post">
+							<tr>
+								<input name="sc_seq" value="${SC.sc_seq}" type="hidden">
+								<input name="st_num" value="${ST.st_num}" type="hidden">
 								<td>${i.count}</td>
 								<td>${SC.sc_subject}</td>
-								<td class="delete">${SC.sc_score}<button type="button" class="score_btn sc_delete">삭제</button></td>
+								<td class="delete">${SC.sc_score}<button type="button" class="score_btn sc_delete" onclick="scdelete(scdelete${i.count})">삭제</button></td>
 							</tr>
+						</form>
 						</c:forEach>
 						<tr>
 							<td>총합</td>
@@ -119,17 +123,13 @@ let stGrade = document.querySelector("input#st_grade");
 let stTel = document.querySelector("input#st_tel");
 let btn = document.querySelector("#btn_box");
 let btn2 = document.querySelector("#btn_box2");
-let btn_delete = document.querySelector(".sc_delete");
 
-btn_delete.addEventListener("click",(e)=>{
-	let tagName = e.target.tagName;
-	if(tagName == "BUTTON") {
-		let tr = e.target.closest("TR").dataset;
-		if(confirm("정말 삭제할까요?")) {
-			document.location.replace("${rootPath}/editlist/scdelete?sc_num=" + tr.seq + "&st_num=" +${ST.st_num} )
-		}
+function scdelete(scseq) {
+	if(confirm("삭제할까요")) {
+		"#" + scseq.submit();
 	}
-});
+}
+
 btn.addEventListener("click",(e)=>{
 	let tagName = e.target.tagName;
 	if(tagName === "BUTTON") {

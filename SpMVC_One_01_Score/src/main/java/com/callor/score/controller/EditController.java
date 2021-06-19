@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.callor.score.model.ScoreVO;
@@ -30,15 +31,16 @@ public class EditController {
 	}
 	
 	@RequestMapping(value= {"/",""}, method=RequestMethod.GET)
-	public String list(Model model, String st_num) {
+	public String list(Model model, String st_num, @RequestParam(value="stnum", defaultValue="") String stnum) {
 		
+		if(st_num == null) {
+			st_num = stnum;
+		}
 		StudentVO stVO = studentService.findById(st_num);
 		List<ScoreVO> scList = scoreService.findByStNum(st_num);
-		
-		log.debug("scVO {}",scList);
-		model.addAttribute("ST",stVO);
-		model.addAttribute("SC",scList);
-			
+		log.debug("홈에서 {}", scList);
+		model.addAttribute("ST", stVO);
+		model.addAttribute("SC", scList);
 		return "editlist/viewInfo";
 	}
 	
@@ -46,27 +48,25 @@ public class EditController {
 	public String update(@ModelAttribute StudentVO vo ) {
 		log.debug("StudentVO {}",vo);
 		studentService.update(vo);
+		
 		return "redirect:/";
 	}
-	
 	
 	@RequestMapping(value="/stdelete", method=RequestMethod.GET)
 	public String stDelete(Model model, String st_num) {
 		log.debug("st_num",st_num);
 		studentService.delete(st_num);
-
+		
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="/scdelete", method=RequestMethod.GET)
-	public String scDelete(Model model, String sc_num, String st_num) {
-		log.debug("선택 {}",sc_num);
-		// scoreService.delete(sc_num);
-		StudentVO stVO = studentService.findById(st_num);
-		List<ScoreVO> scList = scoreService.findByStNum(st_num);
+	@RequestMapping(value="/scdelete", method=RequestMethod.POST)
+	public String scDelete(String sc_seq, String st_num, RedirectAttributes rattr) {
+		log.debug("점수번호 {}",sc_seq);
+		log.debug("학생번호 {}",st_num);
+		scoreService.delete(sc_seq);
+		rattr.addAttribute("stnum",st_num);
 		
-		model.addAttribute("ST",stVO);
-		model.addAttribute("SC",scList);
-		return "redirect:/";
+		return "redirect:/editlist";
 	}
 }
