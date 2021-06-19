@@ -69,7 +69,7 @@ public class ScoreDaoImplV1 implements ScoreDao {
 		String sql = " UPDATE tbl_score SET ";
 		sql += " sc_stnum = ?, ";
 		sql += " sc_subject = ?, ";
-		sql += " sc_score = ?, ";
+		sql += " sc_score = ? ";
 		sql += " WHERE sc_seq = ? ";
 		
 		Object[] params = new Object[] {

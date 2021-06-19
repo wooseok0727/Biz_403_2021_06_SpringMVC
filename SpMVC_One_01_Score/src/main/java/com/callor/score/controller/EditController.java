@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,6 +41,12 @@ public class EditController {
 		return "editlist/viewInfo";
 	}
 	
+	@RequestMapping(value= {"/",""},method=RequestMethod.POST)
+	public String update(@ModelAttribute StudentVO vo ) {
+		log.debug("StudentVO {}",vo);
+		studentService.update(vo);
+		return "redirect:/";
+	}
 	
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)

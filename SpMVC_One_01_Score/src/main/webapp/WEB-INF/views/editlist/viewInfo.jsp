@@ -16,7 +16,7 @@
 						<table id="table1" class="container">
 							<tr>
 								<td>학번</td>
-								<td><input id="st_num" name="st_num" value="${ST.st_num}"
+								<td><input id="st_num" value="${ST.st_num}"
 									readonly></td>
 							</tr>
 							<tr>
@@ -57,7 +57,7 @@
 			<div class="eContainer back">
 				<div class="student1">
 					<table id="table1" class="container">
-						<tr data-num="${ST.st_num}">
+						<tr>
 							<td>학번</td>
 							<td>${ST.st_num}</td>
 						</tr>

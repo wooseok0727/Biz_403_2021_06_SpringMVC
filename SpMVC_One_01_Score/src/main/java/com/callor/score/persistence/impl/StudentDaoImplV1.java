@@ -77,7 +77,7 @@ public class StudentDaoImplV1 implements StudentDao {
 		sql += " st_dept = ?,";
 		sql += " st_grade = ?,";
 		sql += " st_tel = ?,";
-		sql += " st_addr = ?,";
+		sql += " st_addr = ?";
 		sql += " WHERE st_num = ? ";
 		
 		Object[] params = new Object[] {
