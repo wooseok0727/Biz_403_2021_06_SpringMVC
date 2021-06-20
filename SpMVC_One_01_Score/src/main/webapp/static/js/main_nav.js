@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (menuText === "성적일람표") {
         urlPath += "/scInfo";
       } else if (menuText === "로그인") {
-        urlPath += "/";
+        urlPath += "/admin/login";
       }
       location.href = urlPath;
     }
