@@ -51,7 +51,7 @@ public class ScoreDaoImplV1 implements ScoreDao {
 	@Override
 	public int insert(ScoreVO vo) {
 		String sql = " INSERT INTO tbl_score ";
-		sql += " (sc_seq,sc_stnum,sc_subejct,sc_score) ";
+		sql += " (sc_seq,sc_stnum,sc_subject,sc_score) ";
 		sql += " VALUES( ?, ?, ?, ?) ";
 		
 		Object[] params = new Object[] {

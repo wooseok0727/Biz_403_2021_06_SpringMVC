@@ -52,6 +52,14 @@ public class EditController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/scinsert", method=RequestMethod.POST)
+	public String insert(@ModelAttribute ScoreVO vo, RedirectAttributes rattr) {
+		
+		scoreService.insert(vo);
+		rattr.addAttribute("stnum",vo.getSc_stnum());
+		return "redirect:/editlist";
+	}
+	
 	@RequestMapping(value="/stdelete", method=RequestMethod.GET)
 	public String stDelete(Model model, String st_num) {
 		log.debug("st_num",st_num);

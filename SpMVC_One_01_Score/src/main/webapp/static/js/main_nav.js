@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (menuText === "HOME") {
         urlPath += "/";
       } else if (menuText === "학생정보") {
-        urlPath += "/";
+        urlPath += "/stInfo";
       } else if (menuText === "성적일람표") {
-        urlPath += "/";
+        urlPath += "/scInfo";
       } else if (menuText === "로그인") {
         urlPath += "/";
       }

@@ -13,10 +13,12 @@ import lombok.ToString;
 @ToString
 public class ScoreDTO {
 	
-	private String sc_seq;
-	private String sc_stnum;
-	private String sc_subject;
-	private Integer sc_score = 0;
-	private Long sc_subcount = 0L;
-	private Integer sc_sum = 0;
+	private String st_num;
+	private String st_name;
+	private Integer sc_kor = 0; 
+	private Integer sc_eng = 0;
+	private Integer sc_math = 0;
+	private Integer sc_sci = 0;
+	private Integer sc_scores = 0;
+	private Float sc_avg = 0F;
 }

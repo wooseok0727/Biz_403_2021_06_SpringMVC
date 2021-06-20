@@ -32,18 +32,4 @@
       </table>
     </section>
 </body>
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
-	
-	document.querySelector("table.container").addEventListener("click",(e)=>{
-		
-		let tagName = e.target.tagName;
-		if(tagName == "TD") {
-			let tr = e.target.closest("TR").dataset;
-			let st_num = tr.num;
-			location.href = "${rootPath}/editlist?st_num=" + st_num;				
-		}
-	});
-});
-</script>
 </html>

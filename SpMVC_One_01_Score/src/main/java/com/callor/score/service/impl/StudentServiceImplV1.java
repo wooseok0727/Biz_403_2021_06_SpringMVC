@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.callor.score.model.StudentVO;
 import com.callor.score.persistence.StudentDao;
 import com.callor.score.service.StudentService;
+import com.google.protobuf.Value;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,8 +48,9 @@ public class StudentServiceImplV1 implements StudentService {
 			stNum = String.format("2021%04d", 1);
 		} else {
 			Integer intCode = Integer.valueOf(stNum) + 1;
-			stNum = String.format("2021%04d", intCode);
+			stNum = String.valueOf(intCode);
 		}
+		log.debug("stNum {}", stNum);
 		vo.setSt_num(stNum);
 		studentDao.insert(vo);
 		

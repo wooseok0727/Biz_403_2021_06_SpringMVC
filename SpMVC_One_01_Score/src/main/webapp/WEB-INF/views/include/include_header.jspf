@@ -8,6 +8,7 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	user-select: none;
 }
 
 body {
@@ -78,7 +79,8 @@ nav#main_nav li:hover:after {
 <script>
 	var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-18-003"></script>
+<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-18-006"></script>
+<script src="${rootPath}/static/js/main_list.js?ver=2021-06-18-006"></script>
 <header>
 	<h1>
 		<span>대한 고교 </span>성적처리 2021 V1

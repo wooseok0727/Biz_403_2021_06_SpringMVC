@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.callor.score.model.ListDTO;
+import com.callor.score.model.ScoreDTO;
 import com.callor.score.persistence.ListDao;
 import com.callor.score.service.ListService;
 
@@ -23,8 +24,11 @@ public class ListServiceImplV1 implements ListService{
 	public List<ListDTO> viewStudentAndScore() {
 		
 		return listDao.selectAll();
+	}
+	@Override
+	public List<ScoreDTO> viewStudentAndScore2() {
 		
-		
+		return listDao.selectAll2();
 	}
 
 }

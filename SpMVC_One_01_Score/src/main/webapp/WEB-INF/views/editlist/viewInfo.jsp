@@ -14,33 +14,34 @@
 				<div class="student1">
 					<form id="st_update" method="POST">
 						<table id="table1" class="container">
-							<tr>
+							<tr data-insert="1" >
 								<td>학번</td>
-								<td><input id="st_num" value="${ST.st_num}"
+								<td><input id="st_num" value="${ST.st_num}" autocomplete='off'
 									readonly></td>
 							</tr>
-							<tr>
+							<tr data-insert="1" >
 								<td>이름</td>
-								<td><input id="st_name" name="st_name"
+								<td><input id="st_name" name="st_name" maxlength='20' autocomplete='off'
 									value="${ST.st_name}"></td>
 							</tr>
-							<tr>
+							<tr data-insert="1" >
 								<td>전공</td>
-								<td><input id="st_dept" name="st_dept"
+								<td><input id="st_dept" name="st_dept" maxlength='20' autocomplete='off'
 									value="${ST.st_dept}"></td>
 							</tr>
-							<tr>
+							<tr data-insert="1" >
 								<td>학년</td>
-								<td><input id="st_grade" name="st_grade"
-									value="${ST.st_grade}"></td>
+								<td><input id="st_grade" name="st_grade" type="number" min="1" max="3"
+								autocomplete='off' value="${ST.st_grade}"></td>
 							</tr>
-							<tr>
+							<tr data-insert="1" >
 								<td>연락처</td>
-								<td><input id="st_tel" name="st_tel" value="${ST.st_tel}"></td>
+								<td><input id="st_tel" name="st_tel" maxlength='15'
+								autocomplete='off' value="${ST.st_tel}"></td>
 							</tr>
-							<tr>
+							<tr data-insert="1" >
 								<td>주소</td>
-								<td><input name="st_addr" value="${ST.st_addr}"></td>
+								<td><input name="st_addr" maxlength='125' autocomplete='off' value="${ST.st_addr}"></td>
 							</tr>
 						</table>
 					</form>
@@ -100,13 +101,26 @@
 							</c:forEach>
 							<td>${SC_COUNT}</td>
 							<td>${SC_SUM}</td>
-							
 						</tr>
+						<form action="editlist/scinsert" id="scinsert" method="POST">
+							<tr class="main_insert" style="display: none;">
+								<td>성적추가</td>
+								<td><select name="sc_subject">
+										<option value="국어">국어</option>
+										<option value="영어">영어</option>
+										<option value="수학">수학</option>
+										<option value="과학">과학</option>
+								</select></td>
+								<td class="insert"><input id="sc_score" type="number" min="0" max="100" name="sc_score" autocomplete='off'/>
+								<button type="button" class="score_btn sc_insert" onclick="sc_insert2()">추가</button></td>
+								<input type="hidden" name="sc_stnum" value="${ST.st_num}">
+							</tr>
+						</form>
 					</table>
 				</div>
 				<div class="btn_container">
 					<div id="btn_box">
-						<button type="button" class="score_btn">성적추가</button>
+						<button type="button" class="score_btn" onclick="sc_insert()">성적추가</button>
 						<button type="button" class="std_btn std_edit">학생정보수정</button>
 						<button type="button" class="std_btn">학생정보삭제</button>
 					</div>
@@ -123,6 +137,27 @@ let stGrade = document.querySelector("input#st_grade");
 let stTel = document.querySelector("input#st_tel");
 let btn = document.querySelector("#btn_box");
 let btn2 = document.querySelector("#btn_box2");
+let main_insert = document.querySelector(".main_insert");
+let scScore = document.querySelector("input#sc_score");
+
+function sc_insert2() {
+	
+	if(scScore.value === "" || scScore.value === NaN || scScore.value < 0 || scScore.value > 100) {
+		alert("점수를 정확히 입력하세요");
+		scScore.focus();
+		return false;
+	} else {
+		document.querySelector("form#scinsert").submit();
+	}
+}
+
+function sc_insert() {
+	if(main_insert.style.display === "none") {
+		  main_insert.style.display = "";
+	} else {
+		  main_insert.style.display = "none";
+	}
+};
 
 function scdelete(scseq) {
 	if(confirm("삭제할까요")) {
@@ -165,8 +200,8 @@ btn2.addEventListener("click",(e)=>{
 			st_dept.focus();
 			return false;
 		}
-		if(st_grade.value === "") {
-			alert("학년을 입력하세요");
+		if(st_grade.value === "" || st_grade.value === NaN || st_grade.value < 0 || st_grade.value > 3) {
+			alert("학년을 정확히 입력하세요");
 			st_grade.focus();
 			return false;
 		}
