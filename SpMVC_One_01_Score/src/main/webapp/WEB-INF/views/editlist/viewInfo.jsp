@@ -131,10 +131,6 @@
 </body>
 <script>
 let main_con = document.querySelector("#main_con");
-let stName = document.querySelector("input#st_name");
-let stDept = document.querySelector("input#st_dept");
-let stGrade = document.querySelector("input#st_grade");
-let stTel = document.querySelector("input#st_tel");
 let btn = document.querySelector("#btn_box");
 let btn2 = document.querySelector("#btn_box2");
 let main_insert = document.querySelector(".main_insert");
@@ -154,6 +150,7 @@ function sc_insert2() {
 function sc_insert() {
 	if(main_insert.style.display === "none") {
 		  main_insert.style.display = "";
+		  
 	} else {
 		  main_insert.style.display = "none";
 	}

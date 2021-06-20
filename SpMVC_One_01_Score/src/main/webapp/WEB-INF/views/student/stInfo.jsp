@@ -33,11 +33,11 @@
 			<tr class="main_insert" data-insert="1" style="display: none;">
 				<td>학생추가</td>
 				<td></td>
-				<td><input autocomplete="off" name="st_name"></td>
-				<td><input autocomplete="off" name="st_dept"></td>
-				<td><input autocomplete="off" name="st_grade"></td>
-				<td><input autocomplete="off" name="st_tel"></td>
-				<td class="insert"><input autocomplete="off" name="st_addr" />
+				<td><input autocomplete="off" id="st_name" name="st_name" maxlength='20'></td>
+				<td><input autocomplete="off" id="st_dept" name="st_dept" maxlength='20'></td>
+				<td><input autocomplete="off" id="st_grade" name="st_grade" type="number" min="1" max="3"></td>
+				<td><input autocomplete="off" id="st_tel" name="st_tel" maxlength='15'></td>
+				<td class="insert"><input autocomplete="off" name="st_addr" maxlength='125'/>
 			</tr>
 		</form>	
       </table>
@@ -68,8 +68,30 @@ function st_insert() {
 	}
 };
 function st_insert2() {
-  main_insert.style.display = "none";
+	
+	if(st_name.value === "") {
+		alert("이름을 입력하세요");
+		st_name.focus();
+		return false;
+	}
+	if(st_dept.value === "") {
+		alert("전공을 입력하세요");
+		st_dept.focus();
+		return false;
+	}
+	if(st_grade.value === "" || st_grade.value === NaN || st_grade.value < 0 || st_grade.value > 3) {
+		alert("학년을 정확히 입력하세요");
+		st_grade.focus();
+		return false;
+	}
+	if(st_tel.value === "") {
+		alert("연락처를 입력하세요");
+		st_tel.focus();
+		return false;
+	}
   document.querySelector("form#stinsert").submit();  
 }
+
+
 </script>
 </html>
