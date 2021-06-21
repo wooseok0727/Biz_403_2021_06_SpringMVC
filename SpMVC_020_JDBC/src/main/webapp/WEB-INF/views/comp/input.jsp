@@ -12,21 +12,24 @@
 		<fieldset>
 			<legend>출판사 정보</legend>
 			<div>
-				<label>출판사명</label><input name="cp_title" id="cp_title"
-					placeholder="">
+				<label>출판사명</label>
+				<input name="cp_title" id="cp_title" placeholder="">
 			</div>
 			<div>
-				<label>대표자명</label><input name="cp_ceo" id="cp_ceo" placeholder="">
+				<label>대표자명</label>
+				<input name="cp_ceo" id="cp_ceo" placeholder="">
 			</div>
 			<div>
-				<label>전화번호</label><input name="cp_tel" id="cp_tel" placeholder="">
+				<label>전화번호</label>
+				<input name="cp_tel" id="cp_tel" placeholder="">
 			</div>
 			<div>
-				<label>주소</label><input name="cp_addr" id="cp_addr" placeholder="">
+				<label>주소</label>
+				<input name="cp_addr" id="cp_addr" placeholder="">
 			</div>
 			<div>
-				<label>주요장르</label><input name="cp_genre" id="cp_genre"
-					placeholder="">
+				<label>주요장르</label>
+				<input name="cp_genre" id="cp_genre" placeholder="">
 			</div>
 		</fieldset>
 	</form>

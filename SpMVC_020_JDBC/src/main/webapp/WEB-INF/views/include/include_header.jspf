@@ -94,7 +94,7 @@ section#ad_sec article:nth-of-type(n) {
 // var rootPath = "/jdbc"
 var rootPath = "${rootPath}"
 </script>
-<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-17-004"></script>
+<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-17-008"></script>
 <header>
 	<h1>도서정보 관리 2021</h1>
 	<p>빛고을 총판 도서관리 시스템 2021 v1</p>

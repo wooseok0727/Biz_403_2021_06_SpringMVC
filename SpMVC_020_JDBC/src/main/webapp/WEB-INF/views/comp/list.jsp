@@ -18,14 +18,25 @@
 			<th>주소</th>
 			<th>주요장르</th>
 		</tr>
-		<tr>
-			<th>CODE</th>
-			<th>출판사명</th>
-			<th>대표</th>
-			<th>전화번호</th>
-			<th>주소</th>
-			<th>주요장르</th>
-		</tr>
+		<c:choose>
+			<c:when test="${empty COMPS}">
+				<tr>
+					<td colspan="6">데이터가 없음</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${COMPS}" var="COMP" varStatus="seq">
+						<tr>
+							<td>${COMP.cp_code}</td>
+							<td>${COMP.cp_title}</td>
+							<td>${COMP.cp_ceo}</td>
+							<td>${COMP.cp_tel}</td>
+							<td>${COMP.cp_addr}</td>
+							<td>${COMP.cp_genre}</td>
+						</tr>
+					</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</table>
 	
 	<div class="btn_box">

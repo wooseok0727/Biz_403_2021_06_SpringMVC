@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // 각각의 메뉴를 클릭했을 때 공통으로 필요한
       // rootPath 문자열을 변수에 세팅
       let urlPath = `${rootPath}`;
-
       if (menuText === "HOME") {
         // urlPath += rootPath + "/"
         urlPath += "/";

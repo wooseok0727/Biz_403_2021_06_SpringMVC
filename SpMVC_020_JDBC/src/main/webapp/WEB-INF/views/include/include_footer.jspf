@@ -16,3 +16,7 @@ address {
 <footer>
 	<address>CopyRight &copy; crash2@naver.com</address>
 </footer>
+
+<div id="modal">
+	<span>X</span>
+</div>

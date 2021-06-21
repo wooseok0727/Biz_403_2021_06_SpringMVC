@@ -11,10 +11,17 @@ form#login_form {
 	width: 350px;
 	padding: 40px;
 	margin: 50px auto;
-	
 	background-color: #191919;
 	text-align: center;
 	border-radius: 20px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	
+	z-index: 200;
+	animation-name : aniTopDown;
+	animation-duration: 0.8s;
 }
 
 form#login_form h2 {
@@ -79,6 +86,17 @@ form#login_form div.msg {
 	background-color: red;
 	color: yellow;
 	font-size: 15px;
+}
+
+@keyframes aniTopDown {
+	from {
+		top:-300px;
+		opacity: 0;
+	}
+	to {
+		top: 50%;
+		opacity: 1;
+	}
 }
 </style>
 <body>

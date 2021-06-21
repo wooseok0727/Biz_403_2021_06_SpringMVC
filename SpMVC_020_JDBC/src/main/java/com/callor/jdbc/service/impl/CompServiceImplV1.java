@@ -1,5 +1,7 @@
 package com.callor.jdbc.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.callor.jdbc.model.CompanyVO;
@@ -37,6 +39,25 @@ public class CompServiceImplV1 implements CompService {
 		compDao.insert(vo);
 		
 		return 0;
+	}
+
+	@Override
+	public List<CompanyVO> findByCName(String cp_title) {
+		
+		// 전달받은 출판사 이름에서 앞뒤의 빈칸을 제거하고
+		// Dao에게 Toss한 후 
+		// 출판사 리스트를 받아 다시 return하기
+		return compDao.findByCName(cp_title.trim());
+	}
+
+	@Override
+	public List<CompanyVO> selectAll() {
+		return compDao.selectAll();
+	}
+
+	@Override
+	public CompanyVO findByCCode(String cp_code) {
+		return compDao.findById(cp_code.trim());
 	}
 
 }
