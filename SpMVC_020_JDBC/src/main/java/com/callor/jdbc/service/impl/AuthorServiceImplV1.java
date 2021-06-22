@@ -35,4 +35,16 @@ public class AuthorServiceImplV1 implements AuthorService {
 		return authorDao.findByATel(au_tel.trim());
 	}
 
+	@Override
+	public List<AuthorVO> findByNameAndTel(String au_text) {
+		
+		List<AuthorVO> nameList = authorDao.findByAName(au_text);
+		List<AuthorVO> telList = authorDao.findByATel(au_text);
+		
+		// nameList에 telList를 통째로 합치기
+		// 두 list의 Generic type이 같을 경우 가능
+		nameList.addAll(telList);
+		return nameList;
+	}
+
 }

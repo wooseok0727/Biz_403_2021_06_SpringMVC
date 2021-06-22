@@ -80,7 +80,7 @@ public class AuthorDaoImplV1 implements AuthorDao {
 	@Override
 	public List<AuthorVO> findByATel(String atel) {
 		String sql = " SELECT * FROM tbl_author ";
-		sql += " WHERE au_tel = ? ";
+		sql += " WHERE au_tel LIKE CONCAT('%', ? , '%')";
 		/*
 		 * 전화번호로 조회를 하면 1개의 데이터만 추출될 것이다
 		 * 하지만 DB조회에서 PK를 기준으로 조회하는 경우를 제외하고는

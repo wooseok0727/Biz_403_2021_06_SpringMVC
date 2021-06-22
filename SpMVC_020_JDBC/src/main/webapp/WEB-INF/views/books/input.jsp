@@ -18,7 +18,7 @@ form#book_input span.name {
 <script>
 	var rootPath = "${rootPath}";
 </script>
-<script src="${rootPath}/static/js/book_input.js?ver=2021-61-22-007"></script>
+<script src="${rootPath}/static/js/book_input.js?ver=2021-61-22-014"></script>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<section class="main_sec">
@@ -49,11 +49,11 @@ form#book_input span.name {
 				</div>
 				<div>
 					<label>가격</label> 
-					<input name="bk_price" id="bk_price" placeholder="">
+					<input name="bk_price" id="bk_price" type="number" value="0" placeholder="">
 				</div>
 				<div>
 					<label>페이지수</label> 
-					<input name="bk_pages" id="bk_pages" placeholder="">
+					<input name="bk_pages" id="bk_pages" type="number" value="0" placeholder="">
 				</div>
 			</fieldset>
 			<div class="btn_box">

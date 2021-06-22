@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.jdbc.model.AuthorVO;
 import com.callor.jdbc.model.UserVO;
@@ -57,12 +58,28 @@ public class AuthorController {
 		return "author/list";
 	}
 	
+	/*
+	 * cp_title을 Request 로부터 받아 변수에 세팅을 하는데
+	 * Request를 할 때 cp_title 변수를 보내지 않으면
+	 * 400 http status 오류가 발생한다.
+	 * 400 오류는 서버 App 디버깅 과정에서 상당히 관리하기 어려운
+	 * 오류가 된다
+	 * 
+	 * 단순한 변수(VO, DTO, MAP 형식이 아닌 단일 변수)일 경우는
+	 * @RequestParam의 required 옵션을 false로 선언하고
+	 * default 값을 임의로 설정해 두면
+	 * 코드 내에서 핸들링을 할 수 있다
+	 */
 	@RequestMapping(value="/search",method=RequestMethod.GET)
-	public String search(Model model) {
+	public String search(@RequestParam(name="au_name",required = false, defaultValue = "") String au_name, Model model) {
 		
-		List<AuthorVO> authorList = authorService.selectAll();
-		model.addAttribute("AUTHORS",authorList);
-		
+		if(au_name == null || au_name.equals("")) {
+			List<AuthorVO> authorList = authorService.selectAll();
+			model.addAttribute("AUTHORS",authorList);
+		} else {
+			List<AuthorVO> authorList = authorService.findByNameAndTel(au_name);
+			model.addAttribute("AUTHORS",authorList);
+		}
 		return "author/search";
 	}
 	
