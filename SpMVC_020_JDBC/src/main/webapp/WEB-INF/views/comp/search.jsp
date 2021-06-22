@@ -24,7 +24,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${COMPS}" var="COMP" varStatus="seq">
-						<tr data-ccode="${COMP.cp_code}">
+						<tr data-ccode="${COMP.cp_code}" class="search_comp">
 							<td>${COMP.cp_code}</td>
 							<td>${COMP.cp_title}</td>
 							<td>${COMP.cp_ceo}</td>

@@ -21,7 +21,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${AUTHORS}" var="AUTH">
-						<tr>
+						<tr data-acode="${AUTH.au_code}" class="search_author">
 							<td>${AUTH.au_code}</td>
 							<td>${AUTH.au_name}</td>
 							<td>${AUTH.au_tel}</td>
