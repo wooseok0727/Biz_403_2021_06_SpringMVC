@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.callor.jdbc.model.AuthorVO;
 import com.callor.jdbc.model.UserVO;
+import com.callor.jdbc.persistence.AuthorDao;
 import com.callor.jdbc.service.AuthorService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +55,15 @@ public class AuthorController {
 		 */
 		model.addAttribute("AUTHORS",auList);
 		return "author/list";
+	}
+	
+	@RequestMapping(value="/search",method=RequestMethod.GET)
+	public String search(Model model) {
+		
+		List<AuthorVO> authorList = authorService.selectAll();
+		model.addAttribute("AUTHORS",authorList);
+		
+		return "author/search";
 	}
 	
 	@RequestMapping(value="/insert",method=RequestMethod.GET)

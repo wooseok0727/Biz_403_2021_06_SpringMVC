@@ -155,3 +155,35 @@ div#modal span:hover {
 	color:black;
 	cursor: pointer;
 }
+
+section.search_sec {
+	
+	/* 
+		바깥쪽 box의 position이 fiexd로 되어 있기 때문에
+		내부의 box를 바깥 box의 중앙에 배치하기 위하여
+		position을 absolute로 설정하고
+		위치를 지정하였다
+	*/	
+	position: absolute;
+	top: 50%;
+	left:50%;
+	/* 자기 몸체크기의 x, y방향으로 -50%만큼 빼기*/ 
+	transform: translate(-50%, -50%);
+	
+	background-color: white;
+	opacity: 1;
+	width: 80%;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	padding:20px;
+	overflow: auto;
+	z-index: 1000;
+}
+
+section.search_sec table {
+	margin: 10px auto;
+	width: 90%;
+	opacity: 1;
+}
