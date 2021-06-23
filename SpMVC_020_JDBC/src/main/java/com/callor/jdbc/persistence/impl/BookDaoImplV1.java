@@ -33,8 +33,8 @@ public class BookDaoImplV1 implements BookDao{
 		String sql = " SELECT ";
 		sql += "bk_isbn, ";
 		sql += "bk_title,";
-		sql += "C.cp_title AS bk_ccode,";
-		sql += "A.au_name AS bk_acode,";
+		sql += " CONCAT( '(', bk_ccode , ')', C.cp_title) AS bk_ccode,";
+		sql += " CONCAT( '(', A.au_name , ')' ) AS bk_acode,";
 		sql += "bk_date,";
 		sql += "bk_price,";
 		sql += "bk_pages ";

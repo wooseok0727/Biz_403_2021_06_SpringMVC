@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.jdbc.model.AuthorVO;
 import com.callor.jdbc.model.UserVO;
-import com.callor.jdbc.persistence.AuthorDao;
 import com.callor.jdbc.service.AuthorService;
 
 import lombok.extern.slf4j.Slf4j;
