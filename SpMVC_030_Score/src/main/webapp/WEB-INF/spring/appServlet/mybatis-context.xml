@@ -23,7 +23,7 @@
 		<property name="typeAliasesPackage" value="com.callor.score.model"/>
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.callor.score.dao"/>
+	<mybatis-spring:scan base-package="com.callor.score.dao.extend"/>
 	
 	<!-- sessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
