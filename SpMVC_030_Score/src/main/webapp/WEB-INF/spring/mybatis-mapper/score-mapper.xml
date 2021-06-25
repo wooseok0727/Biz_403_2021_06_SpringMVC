@@ -6,6 +6,16 @@
   
 <mapper namespace="com.callor.score.dao.extend.ScoreDao">
 
+	<select id="scoreCount" resultType="Integer">
+		SELECT COUNT(*) FROM tbl_score
+		WHERE sc_stnum = #{st_num}
+	</select>
+	
+	<select id="scoreSum" resultType="Integer">
+		SELECT SUM(sc_score) FROM tbl_score
+		WHERE sc_stnum = #{st_num}
+	</select>
+
 	<select id="selectAll" resultType="ScoreVO">
 		SELECT * FROM tbl_score
 	</select>
@@ -28,7 +38,22 @@
 			LEFT JOIN tbl_subject SB
 				ON SC.sc_sbcode = SB.sb_code
 		ORDER BY SC.sc_stnum, SC.sc_sbcode
-	</select>		
+	</select>	
+	
+	<select id="selectSubjectAndScore" resultType="SubjectAndScoreDTO">
+		SELECT 
+			SB.sb_code AS ss_code, 
+			SB.sb_name AS ss_sbname, 
+			SB.sb_prof AS ss_prof,
+	   		SC.sc_stnum AS ss_stnum, 
+	   		SC.sc_score AS ss_score 
+		FROM tbl_subject SB
+			LEFT JOIN tbl_score SC 
+				ON SC.sc_sbcode = SB.sb_code 
+        		AND SC.sc_stnum = #{st_num}
+        	LIMIT 5
+	</select>
+		
 		
 	<insert id="insert" parameterType="ScoreVO">
 		INSERT INTO tbl_score
@@ -36,6 +61,15 @@
 		VALUES
 			(#{sc_stnum},#{sc_sbcode},#{sc_score})
 	</insert>
+	
+	<insert id="insertOrUpdate">
+		INSERT INTO tbl_score(sc_stnum, sc_sbcode, sc_score) 
+		VALUES(#{st_num},#{sc_sbcode},#{sc_score})
+		
+		ON DUPLICATE KEY UPDATE 
+		sc_score = #{sc_score}
+	</insert>
+	
 	
 	<update id="update" parameterType="ScoreVO">
 		UPDATE tbl_score SET

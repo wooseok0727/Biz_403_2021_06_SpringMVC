@@ -20,7 +20,7 @@ body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	overflow: hidden;
+	overflow: auto;
 }
 header {
 	background: url("${rootPath}/static/images/header_background.jpg") no-repeat;
@@ -103,6 +103,13 @@ td:last-child, th:last-child {
 	border: none;
 }
 
+
+
+button:hover {
+	box-shadow: 2px 2px 2px 2px black; 
+	cursor: pointer;
+}
+
 div.btn_box {
 	width:80%;
 	/* 
@@ -122,9 +129,9 @@ div.btn_box button {
 	border-radius: 5px;
 }
 
-button:hover {
-	box-shadow: 2px 2px 2px 2px black; 
-	cursor: pointer;
+button {
+	background-color: rgba(0,0,0,0.8);
+	color: white;
 }
 
 form {
@@ -165,7 +172,7 @@ form input:hover {
 }
 
 form button {
-	background-color: black;
+	background-color: rgba(0,0,0,0.8);
 	color: white;
 }
 </style>
@@ -187,6 +194,9 @@ form button {
 			</c:when>
 			<c:when test="${BODY == 'STUDENT_INPUT'}">
 				<%@ include file= "/WEB-INF/views/student/input.jsp" %>
+			</c:when>
+			<c:when test="${BODY == 'STUDENT_DETAIL'}">
+				<%@ include file= "/WEB-INF/views/student/detail.jsp" %>
 			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/main.jsp"%>
@@ -225,5 +235,20 @@ if(home) {
 		location.href = "${rootPath}/"
 	});	
 }
+
+let table = document.querySelector("table.detail");
+	if(table) {
+		table.addEventListener("click",(e)=>{
+			let target = e.target;
+			let tagName = target.tagName;
+			
+			if(tagName === "TD") {
+				let tr = target.closest("TR");
+				let stNum = tr.dataset.stnum;
+				
+				location.href = "${rootPath}/student/detail?st_num=" + stNum;		
+			}
+		});
+	}
 </script>
 </html>

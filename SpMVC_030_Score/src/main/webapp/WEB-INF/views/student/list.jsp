@@ -2,15 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-<style>
-button.student {
-	background-color: rgba(0,0,0,0.8);
-	color: white;
-}
-</style>
 
 	<h2>학생정보 리스트</h2>
-	<table>
+	<table class="student_list detail">
 	<tr>
 		<th>학번</th>
 		<th>이름</th>

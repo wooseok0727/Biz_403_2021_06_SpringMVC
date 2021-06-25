@@ -2,13 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-<style>
-button.score {
-	background-color: rgba(0,0,0,0.8);
-	color: white;
-}
-</style>
-<table>
+<table class="score_list detail">
 	<tr>
 		<th>NO</th>
 		<th>학번</th>
@@ -25,7 +19,7 @@ button.score {
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${SCLIST}" var="LIST">
-				<tr>
+				<tr data-stnum="${LIST.sc_stnum}">
 					<td>${LIST.sc_seq}</td>
 					<td>${LIST.sc_stnum}</td>
 					<td>${LIST.sc_stname}</td>
@@ -42,4 +36,3 @@ button.score {
 	<button class="score insert">성적등록</button>
 	<button class="score student list">학생정보</button>
 </div>
-
