@@ -31,7 +31,7 @@ public class HomeController {
 		
 		Map<String,Object> maps = stService.selectMaps();
 		log.debug("Controller maps {}", maps.toString());
-		return "redirect:/score";
+		return "redirect:/student";
 	}
 	
 	/*

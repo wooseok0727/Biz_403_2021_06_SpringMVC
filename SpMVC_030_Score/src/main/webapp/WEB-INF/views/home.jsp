@@ -34,6 +34,38 @@ header {
 	padding: 2rem;'
 }
 
+nav {
+	background-color: black;
+	color: white;
+	width: 100wv;
+	transision:1s;
+}
+nav.fixed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 10px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+nav ul {
+	list-style: none;
+	display: flex;
+	margin: 0 20px;
+}
+nav li {
+	padding: 16px 12px;
+	border-bottom: 3px solid transparent;
+	transition: 0.5s;
+	cursor: pointer;
+}
+nav li:hover {
+	border-bottom: 3px solid yellow;
+}
+nav li:nth-of-type(2) {
+	margin-left: auto;
+}
+
 section#main_sec {
 	flex:1;
 	width: 100vw;
@@ -43,6 +75,13 @@ section#main_sec {
 	background: url("${rootPath}/static/images/header_background.jpg") no-repeat;
 	background-size: 100% 100%;
 	background-attachment: fixed;
+	
+	/*
+	header와 nav를 화면에 고정하고
+	data가 보이는 부분만 scroll 하기 위하여
+	section#main_sec에 overflow 속성 부여하기
+	overflow: auto;
+	*/
 }
 
 h2 {
@@ -183,6 +222,16 @@ form button {
 		<p>성적처리 시스템 2021</p>
 	</header>
 	
+	<!-- nav -->
+	<nav id="main_nav">
+		<ul>
+			<li>HOME</li>
+			<li>로그인</li>
+			<li>로그아웃</li>
+			<li>관리자</li>
+		</ul>
+	</nav>
+	
 	<!-- section -->
 	<section id="main_sec">
 		<c:choose>
@@ -250,5 +299,33 @@ let table = document.querySelector("table.detail");
 			}
 		});
 	}
+	
+let main_nav = document.querySelector("nav#main_nav")
+let main_header = document.querySelector("header")
+// header box의 높이가 얼마냐
+let main_header_height = main_header.offsetHeight;
+document.addEventListener("scroll",()=>{
+	// HTML 문서 전체의 크기, 좌표 등을 추출하기
+	let doc_bound = document.querySelector("HTML")
+				.getBoundingClientRect();
+	
+	let doc_top = doc_bound.top
+	/*
+	화면이 아래방향으로 스크롤될때
+	화면 문서의 top 좌표를 추출하여
+	
+	header box의 높이와 비교
+	header box의 높이에 -1을 곱하고 그 값보다 작아지면
+	==  header box가 화면에서 사라지면
+	nav에 fixed 라는 class를 부착하고
+	== header box가 화면에서 나타나면
+	nav에 fixed class를 제거하여 원래 모습으로 다시 보이기
+	*/
+	if(doc_top < main_header_height * -1) {
+		main_nav.classList.add("fixed")
+	} else {
+		main_nav.classList.remove("fixed")
+	}
+})
 </script>
 </html>
