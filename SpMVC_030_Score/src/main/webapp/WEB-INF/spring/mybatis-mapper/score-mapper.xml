@@ -113,7 +113,7 @@
 	
 	<!-- 
 	List에 담긴 데이터를 받아서
-	Builk insert수행하기
+	Bulk insert수행하기
 	 -->
 	<insert id="insertOrUpdateForList">
 		INSERT INTO tbl_score(sc_stnum,sc_sbcode, sc_score)

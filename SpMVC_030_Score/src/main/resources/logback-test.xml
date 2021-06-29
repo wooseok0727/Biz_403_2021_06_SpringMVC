@@ -4,12 +4,12 @@
 	<!-- 
 	appender : 
 	log를 표시할때 사용할 화면 format 설정하기
-	현재 버전의 logback 에서 appener를 설정하는 방법
+	현재 버전의 logback 에서 appender를 설정하는 방법
 	appender > encoder > pattern
 	
 	구형 버전의 logback에서 사용하던 방법인데
 	현재도 사용가능은 하지만 가급적 사용하지말라는 방법
-	appener > layout > pattern
+	appender > layout > pattern
 	
 	encoder class
 	ch.qos.logback.classic.encoder.PatternLayoutEncoder
