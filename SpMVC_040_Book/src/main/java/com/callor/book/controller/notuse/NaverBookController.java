@@ -1,5 +1,4 @@
-package com.callor.book.controller;
-
+package com.callor.book.controller.notuse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -7,7 +6,6 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,42 +16,22 @@ import com.callor.book.model.BookDTO;
 import com.callor.book.service.NaverBookService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
-@Controller
-public class HomeController {
+//@RequestMapping(value = "/book")
+//@Controller
+public class NaverBookController {
 	
-	@Qualifier("naverBookServiceV2")
+	@Qualifier("naverServiceV1")
 	protected final NaverBookService nBookService;
 	
-	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String home() {
-		
-		return "redirect:/naver/book";
-	}
-	
-	@RequestMapping(value = "/not", method = RequestMethod.GET)
+	@RequestMapping(value = {"/",""} , method = RequestMethod.GET)
 	public String home(
-			@RequestParam(name = "category",required = false, defaultValue = "") String category, Model model) {
-		
-		// model.addAttribute("CATEGORY",category);
-		if(category.equalsIgnoreCase("BOOK")) {
-			return "redirect:/book";
-		} else if(category.equalsIgnoreCase("MOVIE")) {
-			return "redirect:/movie";
-		} else if(category.equalsIgnoreCase("NEWS")) {
-			return "redirect:/news";
-		}
-		return "redirect:/book";
-	}
-	
-	
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home1(
-			@RequestParam(name = "search",required = false, defaultValue = "") String search, Model model) 
+			@RequestParam(name = "search",required = false, defaultValue = "") String search,Model model)
 					throws MalformedURLException, IOException, ParseException {
+		
+		// model.addAttribute("pHolder", "도서 검색어");
+		model.addAttribute("CATEGORY","BOOK");
 		
 		if(search != null && !search.trim().equals("")) {
 			

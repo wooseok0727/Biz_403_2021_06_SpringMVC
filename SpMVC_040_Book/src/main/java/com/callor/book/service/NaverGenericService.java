@@ -24,7 +24,7 @@ import org.json.simple.parser.ParseException;
  *  그래서 인터페이스에 Generic을 선언하여 
  *  VO별로 필요에 따라 클래스를 만들수 있도록 한다
  */
-public interface NaverService<T> {
+public interface NaverGenericService<T> {
 	
 	// 검색문자열을 받아서 검색을 위한 URL을 생성하여 return
 	public String queryURL(String search_text);
