@@ -2,6 +2,7 @@ package com.callor.book.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Optional;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
@@ -41,11 +42,12 @@ public class NaverController {
 	 * Mapping(value="/naver/{username}/{password})
 	 */
 	
-	@RequestMapping(value="/{CATEGORY}",method=RequestMethod.GET)
+	@RequestMapping(value={"/{CATEGORY}",""},method=RequestMethod.GET)
 	public String home(
-			@PathVariable(name = "CATEGORY") String cat,
+			@PathVariable(name = "CATEGORY",required = false) String cat,
 			@RequestParam(name = "search",required = false,defaultValue = "") String search, Model model) throws MalformedURLException, IOException, ParseException {
 		
+		if(cat == null) cat = "book";
 		log.debug("컨트롤러 URL {}",cat);
 		model.addAttribute("CATEGORY",cat);
 		nService.naverGetData(cat, search, model);

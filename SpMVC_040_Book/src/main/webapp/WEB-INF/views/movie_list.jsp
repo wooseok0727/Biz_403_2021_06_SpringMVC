@@ -7,9 +7,9 @@
 		<img src="${MOVIE.image}">
 		<div>
 			<p class="title"><a href="${MOVIE.link}" target="_NEW"> ${MOVIE.title}</a></p>
-			<p class="desc"><strong>감독 : </strong>${MOVIE.director}</p>
-			<p class="author"><strong>출연배우 : </strong>${MOVIE.actor}</p>
-			<p class="publisher"><strong>제작년도 : </strong>${MOVIE.pubDate}</p>
+			<p class="director"><strong>감독 : </strong>${MOVIE.director}</p>
+			<p class="actor"><strong>출연배우 : </strong>${MOVIE.actor}</p>
+			<p class="pubDate"><strong>제작년도 : </strong>${MOVIE.pubDate}</p>
 			<button class="insert">내 보관함 등록</button>
 		</div>
 	</div>
