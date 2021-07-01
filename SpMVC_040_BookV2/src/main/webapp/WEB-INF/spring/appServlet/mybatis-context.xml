@@ -42,6 +42,6 @@
 		<property name="dataSource" ref="ds"/>
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.callor.book.dao"/>
+	<mybatis-spring:scan base-package="com.callor.book.dao.extend"/>
 	
 </beans>
