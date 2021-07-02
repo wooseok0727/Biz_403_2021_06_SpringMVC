@@ -28,6 +28,11 @@ public class BookServiceImplV1 implements BookService {
 	protected final BookDao bookDao;
 	
 	@Override
+	public List<BookDTO> selectAll() {
+		return bookDao.selectAll();
+	}
+	
+	@Override
 	public int insert(String isbnUTF) throws MalformedURLException, IOException, ParseException {
 		
 		String isbn = URLDecoder.decode(isbnUTF,"UTF-8");

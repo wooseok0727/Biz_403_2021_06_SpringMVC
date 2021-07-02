@@ -2,7 +2,7 @@ package com.callor.book.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Optional;
+import java.util.List;
 
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.book.config.NaverQualifier;
+import com.callor.book.model.BookDTO;
+import com.callor.book.service.BookService;
 import com.callor.book.service.impl.NaverMainService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,9 @@ public class NaverController {
 	@Qualifier(NaverQualifier.NAVER_MAIN_SERVICE_V1)
 	protected final NaverMainService nService;
 	
+//	protected final BookService myBookService;
+	
+	
 	@RequestMapping(value={"/{CATEGORY}",""},method=RequestMethod.GET)
 	public String home(
 			@PathVariable(name = "CATEGORY",required = false) String cat,
@@ -37,6 +42,9 @@ public class NaverController {
 		log.debug("컨트롤러 URL {}",cat);
 		model.addAttribute("CATEGORY",cat);
 		nService.naverGetData(cat, search, model);
+		
+//		List<BookDTO> myBookList = myBookService.selectAll();
+//		model.addAttribute("MY_BOOKS",myBookList);
 		
 		return "home";
 	}
