@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -40,9 +41,9 @@ import com.callor.book.config.NaverSecret;
  */
 public abstract class NaverAbstractService<T> {
 
-	public abstract String queryURL(String search_text) throws UnsupportedEncodingException;
+	public abstract String queryURL(String search_text) throws Exception;
 	
-	public String getJsonString(String queryURL) throws MalformedURLException, IOException {
+	public String getJsonString(String queryURL) throws Exception {
 		
 		URL url = new URL(queryURL);
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -73,5 +74,5 @@ public abstract class NaverAbstractService<T> {
 	
 	};
 	
-	public abstract List<T> getNaverList(String jsonString) throws ParseException ;
+	public abstract List<T> getNaverList(String jsonString) throws Exception;
 }

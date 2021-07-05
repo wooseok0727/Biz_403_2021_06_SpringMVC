@@ -36,7 +36,7 @@ public class NaverBookServiceImplV2 extends NaverBookServiceImplV1 {
 	
 	// gson 을 사용하여 jsonString을 parsing 하기
 	@Override
-	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
+	public List<BookDTO> getNaverList(String jsonString) throws Exception {
 		
 		log.debug("나는 ServiceV2");
 		

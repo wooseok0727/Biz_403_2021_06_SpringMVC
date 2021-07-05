@@ -33,7 +33,7 @@ public class BookServiceImplV1 implements BookService {
 	}
 	
 	@Override
-	public int insert(String isbnUTF) throws MalformedURLException, IOException, ParseException {
+	public int insert(String isbnUTF) throws Exception {
 		
 		String isbn = URLDecoder.decode(isbnUTF,"UTF-8");
 		String[] isbns = isbn.split(" ");

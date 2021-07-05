@@ -44,7 +44,7 @@ public class NaverBookServiceImplV1 extends NaverAbstractService<BookDTO> {
 	 */
 	
 	@Override
-	public String queryURL(String search_text) throws UnsupportedEncodingException {
+	public String queryURL(String search_text) throws Exception {
 		
 		// 검색하고자 하는 문자열을 UTF-8로 인코딩
 		String searchUTF8 =  URLEncoder.encode(search_text,"UTF-8");
@@ -67,7 +67,7 @@ public class NaverBookServiceImplV1 extends NaverAbstractService<BookDTO> {
 	 * json-simple을 사용하여 parsing 하기
 	 */
 	@Override
-	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
+	public List<BookDTO> getNaverList(String jsonString) throws Exception {
 		
 		log.debug("나는 ServiceV1");
 		

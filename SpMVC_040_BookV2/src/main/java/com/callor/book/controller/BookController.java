@@ -28,7 +28,7 @@ public class BookController {
 	
 	@RequestMapping(value="/insert/{isbn}",method=RequestMethod.GET)
 	public String insert(@PathVariable("isbn")String isbn, Model model) 
-			throws MalformedURLException, IOException, ParseException {
+			throws Exception {
 		
 		log.debug("ISBN : {}",isbn);
 		
