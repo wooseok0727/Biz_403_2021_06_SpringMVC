@@ -26,7 +26,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		return "home";
+		
+		return "redirect:/gallery";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
