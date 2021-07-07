@@ -7,6 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>My Homepage</title>
+<style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+}
+
+#g_container {
+	margin: 30px auto;
+	display: flex;
+}
+
+</style>
 </head>
 <body>
 	<h1>내 갤러리</h1>
@@ -19,6 +41,10 @@
 			<%@ include file="/WEB-INF/views/gallery/list.jsp" %>
 			<a href="${rootPath}/gallery/input">이미지 등록</a>
 		</c:when>
+		<c:when test="${BODY eq 'G_DETAIL'}">
+			<%@ include file="/WEB-INF/views/gallery/detail.jsp" %>
+			<a href="${rootPath}/gallery">리스트로</a>
+		</c:when>
 		<c:otherwise>
 			<a href="${rootPath}/gallery/input">이미지 등록</a>
 		</c:otherwise>
@@ -28,6 +54,5 @@
 		<img src="${rootPath}/files/${FILE}" width="100px" height="100px"/>
 		</a>	
 	</c:forEach>
-	<img src="${rootPath}/files/title.jpg" width="200px"/>
 </body>
 </html>

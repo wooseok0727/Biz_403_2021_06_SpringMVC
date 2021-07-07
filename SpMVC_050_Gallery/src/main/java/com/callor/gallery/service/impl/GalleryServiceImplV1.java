@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.FilesDTO;
 import com.callor.gallery.model.GalleryDTO;
+import com.callor.gallery.model.GalleryFilesDTO;
 import com.callor.gallery.persistence.extend.FilesDao;
 import com.callor.gallery.persistence.extend.GalleryDao;
 import com.callor.gallery.service.FileService;
@@ -38,7 +39,7 @@ public class GalleryServiceImplV1 implements GalleryService {
 	 * 	이미 생성되어 준비된 객체에 주입등을 수행한다
 	 */
 	@Autowired
-	public void create_table(GalleryDao gDao) {
+	public void create_table(GalleryDao gaDao) {
 		Map<String,String> maps = new HashMap<>();
 		fDao.create_table(maps);
 		gDao.create_table(maps);
@@ -46,14 +47,11 @@ public class GalleryServiceImplV1 implements GalleryService {
 	
 	@Override
 	public int insert(GalleryDTO galleryDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void input(GalleryDTO gDTO, MultipartFile one_file, MultipartHttpServletRequest m_file) throws Exception {
-		// TODO Auto-generated method stub
-		
 		// 대표이미지가 업로드 되면...
 		// 이미지를 서버에 저장하고
 		// 저장된 파일의 이름을 return 받기
@@ -79,16 +77,22 @@ public class GalleryServiceImplV1 implements GalleryService {
 		// 원래 파일이름과 UUID 가 첨가된 파일이름을 추출하여 
 		// FileDTO에 담고
 		// 다시 List에 담아 놓는다
-		for(MultipartFile file : m_file.getFiles("m_file")) {
+		List<MultipartFile> fileList = m_file.getFiles("m_file");
+		for(MultipartFile file : fileList) {
 			
 			String fileOriginName = file.getOriginalFilename();
 			String fileUUIDName = fService.fileUp(file);
 			FilesDTO fDTO = FilesDTO.builder()
-					.file_gseq(g_seq).file_originname(fileOriginName).file_upname(fileUUIDName).build();
+							.file_gseq(g_seq) // 갤러리 데이터의 PK값
+							.file_originname(fileOriginName)
+							.file_upname(fileUUIDName)
+							.build();
 			files.add(fDTO);
 		}
 		
 		log.debug("이미지 들 {}",files.toString());
+		
+		fDao.insertOrUpdateWithList(files);
 	}
 
 	@Override
@@ -96,5 +100,11 @@ public class GalleryServiceImplV1 implements GalleryService {
 		List<GalleryDTO> gList = gDao.selectAll();
 		log.debug("갤러리 리스트 : {}",gList.toString());
 		return gList;
+	}
+
+	@Override
+	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq) {
+		// TODO Auto-generated method stub
+		return gDao.findByIdGalleryFiles(g_seq);
 	}
 }
