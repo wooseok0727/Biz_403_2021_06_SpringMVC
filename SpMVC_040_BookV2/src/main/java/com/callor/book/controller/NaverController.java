@@ -31,6 +31,11 @@ public class NaverController {
 	
 //	protected final BookService myBookService;
 	
+	@RequestMapping(value="/book/list")
+	public List<NewsDTO> book(String search) throws Exception {
+		return nService.naverGetList(search);
+	}
+	
 	
 	@RequestMapping(value={"/{CATEGORY}",""},method=RequestMethod.GET)
 	public String home(

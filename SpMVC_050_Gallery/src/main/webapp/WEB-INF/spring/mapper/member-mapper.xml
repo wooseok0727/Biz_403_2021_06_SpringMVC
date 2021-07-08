@@ -5,15 +5,31 @@
   
  <mapper namespace="com.callor.gallery.persistence.extend.MemberDao">
  
- 	<select id="selectAll">
+ 	<select id="selectAll" resultType="MemberVO">
  		SELECT * FROM tbl_member
  	</select>
- 	<select id="findById"></select>
- 	<!-- 개별적으로 한개 데이터씩 Insert -->
- 	<insert id="insert">
- 	</insert>
+ 	
+ 	<select id="findById" resultType="MemberVO">
+ 		SELECT * FROM tbl_member
+ 		WHERE m_userid = #{m_userid}
+ 	</select>
+ 	
+ 	<insert id="insert"></insert>
 
-  	<insert id="insertOrUpdate">
+  	<insert id="insertOrUpdate" parameterType="MemberVO">
+		INSERT INTO tbl_member (
+ 			m_userid, m_password, m_nick, m_tel, m_level
+ 		)
+ 		VALUES(
+ 			#{m_userid}, #{m_password}, #{m_nick},
+ 			#{m_tel}, #{m_level} 
+ 		)
+ 		ON DUPLICATE KEY UPDATE
+	 		m_userid = m_userid,
+	 		m_password = m_password,
+	 		m_nick = m_nick,
+	 		m_tel = m_tel,
+	 		m_level = m_level
 
  	</insert>
  	
@@ -26,7 +42,7 @@
  			m_password VARCHAR(255) NOT NULL,
  			m_nick VARCHAR(50) NOT NULL,
  			m_tel VARCHAR(50),
- 			m_level INT DEFALUT 9
+ 			m_level INT DEFAULT 9
  		)
  	</update>
  

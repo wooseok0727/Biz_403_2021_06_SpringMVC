@@ -12,16 +12,7 @@
 </head>
 <body>
 	<h1>내 갤러리</h1>
-	<nav id="main_nav">
-		<ul>
-			<li id="home">HOME</li>
-			<li id="image_create">이미지 등록</li>
-			<li id="login">로그인</li>
-			<li id="join">회원가입</li>
-			<li id="logout">로그아웃</li>
-		</ul>
-	</nav>
-	
+	<%@ include file="/WEB-INF/views/include/include_nav.jspf" %>
 	<c:choose>
 		<c:when test="${BODY eq 'G_INPUT'}">
 			<%@ include file="/WEB-INF/views/gallery/input.jsp" %>	
@@ -35,6 +26,9 @@
 		</c:when>
 		<c:when test="${BODY eq 'JOIN'}">
 			<%@ include file="/WEB-INF/views/member/join.jsp" %>
+		</c:when>
+		<c:when test="${BODY eq 'LOGIN'}">
+		<%@ include file="/WEB-INF/views/member/login.jsp" %>
 		</c:when>
 		<c:otherwise>
 			<a href="${rootPath}/gallery/input">이미지 등록</a>
