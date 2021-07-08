@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.gallery.persistence.extend.MemberDao">
+ 
+ 	<select id="selectAll">
+ 		SELECT * FROM tbl_member
+ 	</select>
+ 	<select id="findById"></select>
+ 	<!-- 개별적으로 한개 데이터씩 Insert -->
+ 	<insert id="insert">
+ 	</insert>
+
+  	<insert id="insertOrUpdate">
+
+ 	</insert>
+ 	
+ 	<update id="update"></update>
+ 	<delete id="delete"></delete>
+ 	
+ 	<update id="create_table">
+ 		CREATE TABLE IF NOT EXISTS tbl_member (
+ 			m_userid VARCHAR(125) PRIMARY KEY,
+ 			m_password VARCHAR(255) NOT NULL,
+ 			m_nick VARCHAR(50) NOT NULL,
+ 			m_tel VARCHAR(50),
+ 			m_level INT DEFALUT 9
+ 		)
+ 	</update>
+ 
+ </mapper> 

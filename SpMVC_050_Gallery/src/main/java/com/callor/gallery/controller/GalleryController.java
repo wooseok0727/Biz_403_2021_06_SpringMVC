@@ -27,6 +27,34 @@ public class GalleryController {
 	
 	protected final GalleryService gService;
 	
+	/*
+	 * 주소창에 직접 입력 후 Enter 로 요청할 때 Request를 처리
+	 * 		localhost:8080/rootPath/gallery/dummy
+	 * a tag를 클릭했을 때 
+	 * 		<a href="${rootPath}/gallery/dummy">열기</a>
+	 * JS
+	 * 		location.href="${rootPath}/gallery/dummy" 
+	 */
+	@RequestMapping(value="/dummy",method=RequestMethod.GET)
+	public String dummy() {
+		
+		return "home";
+	}
+	
+	/*
+	 * <form action="${rootPath}/dummy" method="POST">
+	 * 		<input name="str">
+	 * 		<button type="submit">전송</button>
+	 * </form>
+	 */
+	@RequestMapping(value="/dummy",method=RequestMethod.POST)
+	public String dummy(String str) {
+		
+		return "home";
+	}
+	
+	// localhost:8080/rootPath/gallery/ 또는
+	// localhost:8080/rootPath/gallery 로 요청했을 때
 	@RequestMapping(value= {"/",""},method=RequestMethod.GET)
 	public String list(Model model) {
 		

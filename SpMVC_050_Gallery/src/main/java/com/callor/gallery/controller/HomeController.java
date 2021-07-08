@@ -24,6 +24,46 @@ public class HomeController {
 	@Qualifier("fileServiceV2")
 	protected final FileService fileService;
 	
+	// localhost:8080/rootPath/dummy/gallery/detail 요청을 했을때
+	// Request를 처리할 method
+	// a tag를 클릭했을 때 
+	//		<a href="${rootPath}/dummy/gallery/detail">
+	// 주소창에 직접 입력하고 Enter를 눌렀을때
+	//		http://localhost:8080/rootPath/dummy/gallery/detail
+	// JS에서 실행했을 때
+	// 		location.href="${rootPath}/dummy/gallery/detail"
+	@RequestMapping(value="/dummy/gallery/detail",method=RequestMethod.GET)
+	public String dummy() {
+		return "home";
+	}
+	
+	/*
+	 * <form action="${rootPath}/dummy/gallery/detail" method="POST">
+	 * 		<input name="str"/>
+	 * 		<button type="submit">전송</button>
+	 * </form>
+	 * 
+	 * JSP, HTML에서 위 코드를 만들고 입력화면을 보여준 후
+	 * 		input box에 어떤 문자열을 입력한 후
+	 * 		전송 button을 클릭하면
+	 * 이 method가 Request를 받고
+	 * 		input box에 입력한 문자열은 str 변수에 담기게 된다 
+	 */
+	@RequestMapping(value="/dummy/gallery/detail",method=RequestMethod.POST)
+	public String dummy(String str) {
+		
+		return "home";
+	}
+	
+	// localhost:8080/rootPath/dummy/gallery/detail/image 요청을 했을때
+	// Request를 처리할 method
+	@RequestMapping(value="/dummy/gallery/detail/image",method=RequestMethod.GET)
+	public String dummy1() {
+		return "home";
+	}
+	
+	
+	// localhost:8080/rootPath/ 로 요청했을 때
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		

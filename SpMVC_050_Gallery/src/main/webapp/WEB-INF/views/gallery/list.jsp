@@ -16,7 +16,6 @@
 
 </style>
 
-<div id="g_container">
 <c:forEach items="${GALLERYS}" var="GALLERY">
 <div class="g_box">
 	<div>
@@ -30,4 +29,3 @@
 	</div>
 </div>
 </c:forEach>
-</div>
