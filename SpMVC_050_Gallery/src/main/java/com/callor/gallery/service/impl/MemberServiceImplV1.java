@@ -91,7 +91,7 @@ public class MemberServiceImplV1 implements MemberService {
 		// 6. 일치하지 않으면 : 비밀번호 오류 로그인 거부
 		// 7. 일치하면 : 로그인 처리
 		
-		MemberVO findVO = mDao.findById(memberVO.getM_password());
+		MemberVO findVO = mDao.findById(memberVO.getM_userid());
 		if(findVO == null) {
 			model.addAttribute("LOGIN_FAIL","NOT_USERID");
 			return null;

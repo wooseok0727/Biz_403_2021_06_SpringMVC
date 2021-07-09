@@ -4,16 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.GalleryDTO;
 import com.callor.gallery.model.GalleryFilesDTO;
+import com.callor.gallery.model.MemberVO;
 import com.callor.gallery.service.GalleryService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(value="/gallery")
 public class GalleryController {
 	
+	@Qualifier("galleryServiceV2")
 	protected final GalleryService gService;
 	
 	/*
@@ -66,7 +72,12 @@ public class GalleryController {
 	}
 	
 	@RequestMapping(value= "/input", method=RequestMethod.GET)
-	public String input(Model model) {
+	public String input(Model model, HttpSession hSession) {
+		
+		MemberVO memberVO = (MemberVO) hSession.getAttribute("MEMBER");
+		if(memberVO == null) {
+			return "redirect:/member/login";
+		}
 		
 		Date date = new Date(System.currentTimeMillis());
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -114,4 +125,50 @@ public class GalleryController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value="/detail2/{seq}",method=RequestMethod.GET)
+	public String detail(@PathVariable("seq") String seq, Model model, HttpSession hSession) {
+		
+		Long g_seq = 0L;
+		try {
+			g_seq = Long.valueOf(seq);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.debug("갤러리 ID 값 오류");
+			return "redirect:/gallery";
+		}
+		GalleryDTO galleryDTO = gService.findByIdGallery(g_seq);
+		model.addAttribute("GALLERY",galleryDTO);
+		model.addAttribute("BODY","G_DETAIL2");
+		return "home";
+	}
+	
+	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(@RequestParam("g_seq") String seq, HttpSession hSession) {
+		
+		// 삭제를 요구하면
+		// 1. 로그인이 되었나 확인
+		MemberVO memberVO = (MemberVO) hSession.getAttribute("MEMBER");
+		if(memberVO == null ) {
+			return "redirect:/member/login";
+		}
+		Long g_seq = 0L;
+		
+		try {
+			g_seq = Long.valueOf(seq);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.debug("갤러리 SEQ 오류");
+			return "redirect:/";
+		}
+		
+		
+		int result = gService.delete(g_seq);
+		
+		
+		return "redirect:/gallery";
+	}
+	
+	
 }
