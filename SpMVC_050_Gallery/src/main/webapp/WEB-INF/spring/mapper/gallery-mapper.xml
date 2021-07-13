@@ -90,7 +90,10 @@
  	
  	
  	<update id="update"></update>
- 	<delete id="delete"></delete>
+ 	<delete id="delete">
+ 		DELETE FROM tbl_gallery
+ 		WHERE g_seq = #{g_seq}
+ 	</delete>
  	
  	<!-- 
  		현재 프로젝트에서 프로젝트를 Run 하면

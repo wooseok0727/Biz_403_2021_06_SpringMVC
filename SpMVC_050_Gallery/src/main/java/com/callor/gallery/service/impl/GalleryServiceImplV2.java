@@ -39,6 +39,9 @@ public class GalleryServiceImplV2 extends GalleryServiceImplV1 {
 	/*
 	 * 첨부파일이 있는 게시물 삭제하기
 	 * 1. 첨부파일을 제거한 후
+	 * 	가. 첨부파일을 삭제하기 위하여 데이터를 다시 select 하여
+	 * 		첨부파일 이름을 가져오기
+	 * 	나. 가져온 이름으로 파일을 삭제하고
 	 * 2. 게시물 데티어를 삭제
 	 * 
 	 * 첨부파일 뿐만 아니라 JOIN된 데이터가 또 있다.
@@ -61,14 +64,27 @@ public class GalleryServiceImplV2 extends GalleryServiceImplV1 {
 		for(FilesDTO file: fileList) {
 			
 			// 첨부파일 삭제
+			String attFileName = file.getFile_upname();
+			log.debug("attFileName {}",file.getFile_upname());
+			int result = fService.delete(attFileName);
+			if(result > 0) {
+				fDao.delete(file.getFile_gseq());
+			}
+			
+			
 			// 데이터 한개씩 삭제
 		}
 		
 		// 본문 첨부파일 삭제
-		// 본문 데이터 삭제
-		// gDao.delete(g_seq);
-		
-		
+		String imgFileName = gDTO.getG_image();
+		int result = fService.delete(imgFileName);
+		if(result > 0) {
+			// 본문 데이터 삭제
+			gDao.delete(g_seq);
+		} else {
+			log.debug("파일 삭제 실패로 데이터 삭제 하지 않음");
+		}
+
 		return 0;
 	}
 	

@@ -13,12 +13,16 @@
 	margin: 0;
 	padding: 0;
 }
+body {
+	width: 100vw;
+}
 
 h1 {
  text-align: center;
 }
 
 #container {
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
 }

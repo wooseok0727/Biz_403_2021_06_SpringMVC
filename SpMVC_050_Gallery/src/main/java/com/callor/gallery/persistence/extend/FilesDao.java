@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.callor.gallery.model.FilesDTO;
 import com.callor.gallery.persistence.GenericDao;
 
-public interface FilesDao extends GenericDao<FilesDTO, String> {
+public interface FilesDao extends GenericDao<FilesDTO, Long> {
 
 	public int insertOrUpdate(FilesDao fileDao);
 	public int insertWithList(@Param("filesList") List<FilesDTO> filesList);
