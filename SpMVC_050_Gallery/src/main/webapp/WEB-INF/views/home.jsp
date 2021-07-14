@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>My Homepage</title>
+<script src="https://kit.fontawesome.com/a650ca3232.js" crossorigin="anonymous"></script>
 <style>
 * {
 	box-sizing: border-box;
@@ -14,24 +15,94 @@
 	padding: 0;
 }
 body {
-	width: 100vw;
-}
-
-h1 {
- text-align: center;
-}
-
-#container {
-	width: 100vw;
+	height: 100vh;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
+
+header {
+	padding: 2rem;
+	color: white;
+	text-shadow: 2px 2px 2px black;
+	text-align: center;
+	background-color:gray;
+}
+
+section#image_list_section {
+	width: 90vw;
+	margin: 20px auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+div.ga_box {
+	flex: 1 0 10%;
+	display: flex;
+	border: 1px solid blue;
+	padding: 1rem;
+	margin: 1rem;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.3);
+}
+div.ga_box div:first-of-type {
+	flex: 1;
+}
+div.ga_box div:last-of-type {
+	flex: 3;
+}
+@media ( max-width :1500px) {
+	div.ga_box {
+		flex: 1 45%;
+	}
+}
+@media ( max-width :1000px) {
+	div.ga_box {
+		flex: 1 0 100%;
+	}
+}
+form {
+	width: 95%;
+	margin: 10px auto;
+	border: 1px solid green;
+	padding: 12px 16px;
+}
+form label, form input, form textarea {
+	margin: 5px;
+	padding: 8px;
+}
+form label {
+	display: inline-block;
+	width: 30%;
+	text-align: right;
+	margin-right: 5px;
+	font-weight: bold;
+	color: blue;
+}
+form input, form textarea {
+	display: inline-block;
+	width: 60%;
+}
+form button {
+	margin: 10px;
+	padding: 0.7rem 2rem;
+	outline: 0;
+	border: 0;
+	background-color: blue;
+	color: white;
+	border-radius: 10px;
+}
+form button:hover {
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
+
 </style>
 </head>
 <body>
+<header>
 	<h1>내 갤러리</h1>
+</header>
 	<%@ include file="/WEB-INF/views/include/include_nav.jspf" %>
-	<div id="container">
 	<c:choose>
 		<c:when test="${BODY eq 'G_INPUT'}">
 			<%@ include file="/WEB-INF/views/gallery/input.jsp" %>	
@@ -51,11 +122,12 @@ h1 {
 		<c:when test="${BODY eq 'LOGIN'}">
 		<%@ include file="/WEB-INF/views/member/login.jsp" %>
 		</c:when>
+		
 		<c:otherwise>
 			<a href="${rootPath}/gallery/input">이미지 등록</a>
 		</c:otherwise>
 	</c:choose>
-	</div>
+
 	<c:forEach items="${FILES}" var="FILE">
 		<a href="${rootPath}/files/${FILE}" target="_NEW">
 		<img src="${rootPath}/files/${FILE}" width="100px" height="100px"/>

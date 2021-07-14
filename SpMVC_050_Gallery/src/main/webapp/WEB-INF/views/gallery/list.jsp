@@ -4,20 +4,20 @@
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 
 <style>
-	div.g_box {
+	div.ga_box {
 		display: flex;
 	}
-	div.g_box div:first-of-type {
+	div.ga_box div:first-of-type {
 		flex: 1;
 	}
-	div.g_box div:last-of-type {
+	div.ga_box div:last-of-type {
 		flex: 3;
 	}
 
 </style>
 
 <c:forEach items="${GALLERYS}" var="GALLERY">
-<div class="g_box">
+<div class="ga_box">
 	<div>
 		<c:if test="${empty GALLERY.g_image}">
 			<img src="${rootPath}/files/noimage.png" width="100px"/>
@@ -29,9 +29,10 @@
 	</div>
 	<div>
 		<h3>
-			<a href="${rootPath}/gallery/detail2/${GALLERY.g_seq}">${GALLERY.g_subject}</a>
+			<a href="${rootPath}/gallery/detail2/${GALLERY.g_seq}">${GALLERY.g_subject}(${GALLERY.g_seq})</a>
 		</h3>
 		<p>${GALLERY.g_content}</p>
 	</div>
 </div>
 </c:forEach>
+<%@ include file="/WEB-INF/views/include/inclue_page_nav.jspf" %>
