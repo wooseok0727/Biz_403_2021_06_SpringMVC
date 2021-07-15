@@ -4,18 +4,33 @@
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
 
 <style>
-	div.ga_box {
+	section#image_list_section {
+		width: 90vw;
+		margin: 20px auto;
 		display: flex;
+		flex-wrap: wrap;
+	}
+
+	div.ga_box {
+		flex: 1 0 45%;
+		display: flex;
+		border: 1px solid blue;
+		padding: 1rem;
+		margin: 1rem;
+		border-radius: 10px;
+		box-shadow: 5px 5px 5px 3px rgba(0, 0, 0, 0.3);
 	}
 	div.ga_box div:first-of-type {
 		flex: 1;
 	}
 	div.ga_box div:last-of-type {
-		flex: 3;
+		flex: 1;
 	}
 
 </style>
+<%@ include file="/WEB-INF/views/include/include_gallery_search.jspf" %>
 
+<section id="image_list_section">
 <c:forEach items="${GALLERYS}" var="GALLERY">
 <div class="ga_box">
 	<div>
@@ -35,4 +50,5 @@
 	</div>
 </div>
 </c:forEach>
+</section>
 <%@ include file="/WEB-INF/views/include/inclue_page_nav.jspf" %>

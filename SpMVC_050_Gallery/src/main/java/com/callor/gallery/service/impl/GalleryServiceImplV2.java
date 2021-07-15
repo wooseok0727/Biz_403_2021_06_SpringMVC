@@ -10,12 +10,15 @@ import com.callor.gallery.model.GalleryDTO;
 import com.callor.gallery.persistence.extend.FilesDao;
 import com.callor.gallery.persistence.extend.GalleryDao;
 import com.callor.gallery.service.FileService;
+import com.callor.gallery.service.PageService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service("galleryServiceV2")
 public class GalleryServiceImplV2 extends GalleryServiceImplV1 {
+
+
 
 	/*
 	 * @RequiredArgsConstructor 를 사용한 클래스를 상속받을 떄는
@@ -27,8 +30,9 @@ public class GalleryServiceImplV2 extends GalleryServiceImplV1 {
 	 * 
 	 * 이때 각 매개변수의 요소 type 앞에 작성해 주면 된다
 	 */
-	public GalleryServiceImplV2(GalleryDao gDao, FilesDao fDao, @Qualifier("fileServiceV2") FileService fService) {
-		super(gDao, fDao, fService);
+	public GalleryServiceImplV2(GalleryDao gDao, FilesDao fDao, @Qualifier("fileServiceV2") FileService fService, PageService pService) {
+		super(gDao, fDao, fService, pService);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

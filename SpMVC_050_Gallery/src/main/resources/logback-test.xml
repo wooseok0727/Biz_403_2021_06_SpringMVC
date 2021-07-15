@@ -40,6 +40,9 @@
     <logger name="com.callor.gallery.service">
     	<level value="DEBUG"  additivity="false"/>
     </logger>
+       <logger name="com.callor.gallery.persistence">
+    	<level value="DEBUG"  additivity="false"/>
+    </logger>
     
    	 <root level="INFO">
        <appender-ref ref="STDOUT"/>
