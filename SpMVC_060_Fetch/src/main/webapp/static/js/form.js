@@ -34,6 +34,7 @@ if (button_2) {
     let form_1 = document.querySelector("form#user_form");
     if (form_1) {
       const formData = new FormData(form_1);
+      formData.append("addr", "광주시");
       fetch(`${rootPath}/form`, {
         method: "POST",
         body: new URLSearchParams(formData),
