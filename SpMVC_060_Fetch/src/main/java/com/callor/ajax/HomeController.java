@@ -63,7 +63,7 @@ public class HomeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
-	public UserDTO form(@RequestBody UserDTO userDTO, Model model) {
+	public UserDTO form(@RequestBody UserDTO userDTO,  Model model) {
 		return userDTO;
 	}
 }

@@ -1,6 +1,6 @@
-let button = document.querySelector("button#form_1");
-if (button) {
-  button.addEventListener("click", (e) => {
+let button_1 = document.querySelector("button#form_1");
+if (button_1) {
+  button_1.addEventListener("click", (e) => {
     let form_1 = document.querySelector("form#user_form");
     if (form_1) {
       // form_1.submit();
@@ -27,17 +27,19 @@ if (button) {
     }
   });
 }
-
+// URLSearchParams 으로 보낼시 @RequestBody 어노테이션 삭제
 let button_2 = document.querySelector("button#form_2");
 if (button_2) {
   button_2.addEventListener("click", (e) => {
     let form_1 = document.querySelector("form#user_form");
-    const formData = new FormData(form_1);
-    fetch(`${rootPath}/form`, {
-      method: "POST",
-      body: new URLSearchParams(formData),
-    })
-      .then((rest) => res.json())
-      .then((result) => document.writeln(JSON.stringify(result)));
+    if (form_1) {
+      const formData = new FormData(form_1);
+      fetch(`${rootPath}/form`, {
+        method: "POST",
+        body: new URLSearchParams(formData),
+      })
+        .then((res) => res.json())
+        .then((result) => document.writeln(JSON.stringify(result)));
+    }
   });
 }

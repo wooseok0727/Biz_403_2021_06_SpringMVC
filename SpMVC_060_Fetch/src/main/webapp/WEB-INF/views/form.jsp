@@ -10,8 +10,8 @@
 </head>
 <body>
 <h1>FORM</h1>
-<button id="form_2">JSON 전송</button>
-<button id="form_1">Form으로 전송</button>
+<button id="form_1">JSON 전송</button>
+<button id="form_2">Form으로 전송</button>
 <form id="user_form" method="POST">
 	<div>
 		<label>아이디</label>
@@ -34,5 +34,5 @@
 
 </body>
 <script>var rootPath = '${rootPath}'</script>
-<script src="${rootPath}/static/js/form.js?ver=2021-07-20-005"></script>
+<script src="${rootPath}/static/js/form.js?ver=2021-07-20-002"></script>
 </html>
